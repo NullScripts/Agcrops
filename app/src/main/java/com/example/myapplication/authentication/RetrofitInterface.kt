@@ -1,10 +1,7 @@
 package com.example.myapplication.authentication
 
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 import kotlin.collections.HashMap
 
 interface RetrofitInterface {
@@ -14,6 +11,6 @@ interface RetrofitInterface {
     fun executeSignup(@Body map: HashMap<String, String>): Call<Void?>?
     @GET("/login")
     fun executeLogin(@Query("phonenumber")  phonenumber:String): Call<Void?>?
-    @POST("/verify")
-    fun verify(@Body map: HashMap<String, String>): Call<Void?>?
+    @GET("/verify")
+    fun verify(@QueryMap map:HashMap<String, String>): Call<Void?>?
 }

@@ -14,6 +14,11 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".activities.ProfileActivity"></activity>
         <activity android:name=".authentication.RegisterActivity">
+
+        </activity>
+        <activity android:name=".onboarding.OnboardingActivity" >
+        </activity>
+        <activity android:name=".splash.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

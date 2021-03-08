@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="530dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="100dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -102,5 +102,14 @@
                 android:textColor="#ffffff" />
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/register"
+       android:layout_marginLeft="150dp"
+        android:text="Register"
+        android:textColor="#444444"
+        android:textSize="20sp" />
 
 </LinearLayout>

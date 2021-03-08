@@ -1,10 +1,12 @@
 package com.example.myapplication.authentication
 
 
+import android.content.Intent
 import android.os.Bundle
 
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
@@ -41,17 +43,16 @@ class PhoneAuthActivity : AppCompatActivity() {
             verifyotp()
         }
 
-
-
+    findViewById<TextView>(R.id.register).setOnClickListener{
+        startActivity(Intent(this,RegisterActivity::class.java))
+    }
     }
 
 
     private fun sentotp() {
-//        val map = HashMap<String, String>()
-//        map["phonenumber"] = phone.text.toString()
-//        map["channel"] = "sms"
+
         val phonenumber=phone.text.toString()
-        //val channel="sms"
+
 
         val call: Call<Void?>? = retrofitInterface!!.executeLogin(phonenumber)
         call!!.enqueue(object : Callback<Void?> {
@@ -86,6 +87,7 @@ class PhoneAuthActivity : AppCompatActivity() {
                 if (response.code() == 200) {
                     Toast.makeText(this@PhoneAuthActivity,
                         "OTP Verified", Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this@PhoneAuthActivity,RegisterActivity::class.java))
                 } else if (response.code() == 400) {
                     Toast.makeText(this@PhoneAuthActivity,
                         "Error", Toast.LENGTH_LONG).show()

@@ -17,7 +17,7 @@ import androidx.core.view.get
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
-
+import com.example.myapplication.authentication.PhoneAuthActivity
 
 
 class OnboardingActivity : AppCompatActivity() {
@@ -65,7 +65,7 @@ class OnboardingActivity : AppCompatActivity() {
 
         Log.d("OnBoarding", "onCreate: "+preferences.getBoolean(prefShowIntro,false));
         if ( preferences.getBoolean(prefShowIntro,false)) {
-            startActivity(Intent(activity, MainActivity::class.java))
+            startActivity(Intent(activity, PhoneAuthActivity::class.java))
             finish()
         }
 
@@ -84,7 +84,7 @@ class OnboardingActivity : AppCompatActivity() {
                     if(introSliderViewPager.currentItem + 1 < introSliderAdapter.itemCount){
                         introSliderViewPager.currentItem += 1
                     }else {
-                        Intent(applicationContext,  MainActivity::class.java).also {
+                        Intent(applicationContext,  PhoneAuthActivity::class.java).also {
                             startActivity(it)
                             val editor = preferences.edit()
                             editor.putBoolean(prefShowIntro, true)
@@ -96,7 +96,7 @@ class OnboardingActivity : AppCompatActivity() {
                 }
 
                 textSkipIntro.setOnClickListener{
-                    Intent(applicationContext, MainActivity::class.java).also {
+                    Intent(applicationContext, PhoneAuthActivity::class.java).also {
                         startActivity(it)
                         val editor = preferences.edit()
                         editor.putBoolean(prefShowIntro, true)
