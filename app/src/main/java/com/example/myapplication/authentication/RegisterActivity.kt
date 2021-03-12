@@ -1,11 +1,14 @@
 package com.example.myapplication.authentication
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
 
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 
 import retrofit2.Call
@@ -25,7 +28,7 @@ class RegisterActivity : AppCompatActivity() {
     val map = HashMap<String, String>()
     private var retrofit: Retrofit? = null
     private var retrofitInterface: RetrofitInterface? = null
-    private val BASE_URL = "http://192.168.43.2:3000"
+    private val BASE_URL = "http://192.168.1.100:3000"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -42,7 +45,12 @@ class RegisterActivity : AppCompatActivity() {
         retrofitInterface = retrofit?.create(RetrofitInterface::class.java)
 
         signupBtn.setOnClickListener {
-            handleSignupDialog()
+            //Dummy Intent for Practice
+            //TODO: Remove the intent from here after fixing handleSignupDialog intent
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            handleSignupDialog(this)
+
         }
 
 
@@ -73,7 +81,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
 
-    private fun handleSignupDialog() {
+    private fun handleSignupDialog(context: Context) {
 
 
             map["name"] = nameEdit.text.toString()
@@ -87,6 +95,10 @@ class RegisterActivity : AppCompatActivity() {
                     if (response.code() == 200) {
                         Toast.makeText(this@RegisterActivity,
                                 "Signed up successfully", Toast.LENGTH_LONG).show()
+                        //Actual intent
+                        //TODO: fix the intent
+                        val intent = Intent(context,MainActivity::class.java)
+                        startActivity(intent)
                     } else if (response.code() == 400) {
                         Toast.makeText(this@RegisterActivity,
                                 "Already registered", Toast.LENGTH_LONG).show()

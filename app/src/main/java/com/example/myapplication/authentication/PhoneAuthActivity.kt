@@ -20,7 +20,7 @@ import retrofit2.Response
 class PhoneAuthActivity : AppCompatActivity() {
     private var retrofit: Retrofit? = null
     private var retrofitInterface: RetrofitInterface? = null
-    private val BASE_URL = "http://192.168.43.2:3000"
+    private val BASE_URL = "http://192.168.1.100:3000"
     lateinit var phone: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
