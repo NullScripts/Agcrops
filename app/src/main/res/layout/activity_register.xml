@@ -60,6 +60,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/dark_primary_color"
             android:text="Signup"
             android:id="@+id/signup"/>
 

@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Agcrops</string>
+    <string name="from">From</string>
+    <string name="nullscripts">NullScripts</string>
     <string name="skip_intro">SKIP INTRO</string>
     <string name="next">NEXT</string>
     <string name="title_text">Title Text</string>
