@@ -21,5 +21,6 @@
     <color name="colorTextPrimary">#212121</color>
     <color name="colorTextSecondary">#757575</color>
     <color name="logo_background">#FFFFFF</color>
+    <color name="leaf_green">#b2ff59</color>
 
 </resources>
