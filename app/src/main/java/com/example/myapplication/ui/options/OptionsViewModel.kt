@@ -1,13 +1,13 @@
-package com.example.myapplication.ui.about
+package com.example.myapplication.ui.options
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class AboutViewModel : ViewModel() {
+class OptionsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is about Fragment"
+        value = "This is options Fragment"
     }
     val text: LiveData<String> = _text
 }

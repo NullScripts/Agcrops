@@ -21,7 +21,7 @@ import kotlin.math.log
 
 class RegisterActivity : AppCompatActivity() {
     lateinit var signupBtn:Button
-   lateinit var nameEdit :EditText
+    lateinit var nameEdit :EditText
     lateinit var emailEdit:EditText
     lateinit var radioGroup:RadioGroup
 
