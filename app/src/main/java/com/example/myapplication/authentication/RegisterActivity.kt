@@ -10,6 +10,10 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
+import com.example.myapplication.activities.buyer_infoActivity
+import com.example.myapplication.activities.fertilizer_infoActivity
+import com.example.myapplication.activities.tractor_infoActivity
+import kotlinx.android.synthetic.main.activity_register.*
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,7 +28,7 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var nameEdit :EditText
     lateinit var emailEdit:EditText
     lateinit var radioGroup:RadioGroup
-
+    lateinit var intent1:Intent
     val map = HashMap<String, String>()
     private var retrofit: Retrofit? = null
     private var retrofitInterface: RetrofitInterface? = null
@@ -47,9 +51,12 @@ class RegisterActivity : AppCompatActivity() {
         signupBtn.setOnClickListener {
             //Dummy Intent for Practice
             //TODO: Remove the intent from here after fixing handleSignupDialog intent
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
+          // val intent = Intent(this,MainActivity::class.java)
+           startActivity(intent1)
             handleSignupDialog(this)
+
+
+
 
         }
 
@@ -60,24 +67,29 @@ class RegisterActivity : AppCompatActivity() {
         if (view is RadioButton) {
 
             val checked = view.isChecked
-
+            intent1 = Intent(this,MainActivity::class.java)
 
             when (view.getId()) {
                 R.id.radiotractor ->
                     if (checked) {
                         map["tractor"]="true"
+                        intent1 = Intent(this,tractor_infoActivity::class.java)
                     }
                 R.id.radioferti ->
                     if (checked) {
                         map["fertilizer"]="true"
+                        intent1 = Intent(this,fertilizer_infoActivity::class.java)
                     }
                 R.id.radioworker ->
                     if (checked) {
                         map["worker"]="true"
+                         intent1 = Intent(this,buyer_infoActivity::class.java)
                     }
 
             }
+
         }
+
     }
 
 
@@ -95,8 +107,7 @@ class RegisterActivity : AppCompatActivity() {
                     if (response.code() == 200) {
                         Toast.makeText(this@RegisterActivity,
                                 "Signed up successfully", Toast.LENGTH_LONG).show()
-                        //Actual intent
-                        //TODO: fix the intent
+
                         val intent = Intent(context,MainActivity::class.java)
                         startActivity(intent)
                     } else if (response.code() == 400) {
