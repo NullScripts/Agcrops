@@ -39,6 +39,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="10dp"
+        tools:listitem="@layout/buying_history_item"
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
