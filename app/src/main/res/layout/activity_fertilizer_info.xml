@@ -4,42 +4,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/leaf_green"
+    android:padding="10dp"
     tools:context=".activities.fertilizer_infoActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Fertilizer Info"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        />
+
     <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="500dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="50dp"
-        android:orientation="vertical">
-        <EditText
-            android:id="@+id/ferti_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:background="@color/colorTextSecondary"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Address"
-            android:layout_marginTop="30dp"
-            android:inputType="text"
-            android:paddingLeft="10dp"
-            android:textColor="#1F1F1F" />
+            android:layout_marginBottom="10dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fertilizer_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:background="@color/primary_color"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:text="My Address"
+                android:drawableStart="@drawable/ic_twotone_home_24"
+                android:drawableLeft="@drawable/ic_twotone_home_24" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/ferti_type"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/bio_profile_frag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fertilizer Type"
-            android:layout_marginTop="50dp"
-            android:inputType="text"
-            android:paddingLeft="10dp"
-            android:textColor="#1F1F1F" />
+            android:hint="What do you buy?"
+            android:layout_marginBottom="10dp">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ferti_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primary_color"
+                android:drawableStart="@drawable/ic_twotone_info_24"
+                android:drawableLeft="@drawable/ic_twotone_info_24"
+                android:drawablePadding="10dp"
+                android:text="Fertilizer Type"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/dark_primary_color"
-            android:text="Submit"
-            android:id="@+id/ferti_info_sub"/>
-
+            android:backgroundTint="@color/dark_primary_color"
+            android:text="Post Selling Request"
+            android:layout_gravity="center"
+            android:id="@+id/ferti_req"/>
 
     </LinearLayout>
-
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/progressBar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        style="@style/AVLoadingIndicatorView"
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        app:indicatorName="BallClipRotatePulseIndicator"
+        app:indicatorColor="@color/colorAccent" />
 </LinearLayout>
