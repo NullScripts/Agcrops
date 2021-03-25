@@ -64,5 +64,5 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.3'
     implementation 'com.google.android.material:material:1.4.0-alpha01'
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'com.wang.avi:library:2.1.3'
+
 }
