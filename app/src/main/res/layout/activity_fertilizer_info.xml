@@ -29,7 +29,7 @@
         android:padding="20dp"
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
-        android:background="@color/colorTextSecondary"
+        android:background="@color/dark_primary_color"
         >
 
         <com.google.android.material.textfield.TextInputLayout
@@ -75,7 +75,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/dark_primary_color"
+            android:backgroundTint="@color/accent_color"
             android:text="Post Selling Request"
             android:layout_gravity="center"
             android:id="@+id/ferti_req"/>

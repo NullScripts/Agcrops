@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="530dp"
+        android:layout_height="400dp"
         android:layout_marginTop="100dp"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -62,10 +62,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="40dp"
-            android:background="@color/dark_primary_color"
-
+            android:backgroundTint="@color/accent_color"
             android:text="Send OTP"
-            android:textColor="#ffffff" />
+            android:textColor="@color/dark_primary_color" />
         <com.wang.avi.AVLoadingIndicatorView
             android:id="@+id/progressBar"
             android:layout_width="100dp"
@@ -79,14 +78,25 @@
 
     </LinearLayout>
 
-
-    <TextView
+    <androidx.cardview.widget.CardView
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:padding="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/register"
-       android:layout_marginLeft="150dp"
-        android:text="Register"
-        android:textColor="#444444"
-        android:textSize="20sp" />
+        android:background="@color/dark_primary_color"
+        app:cardCornerRadius="25dp">
+        <TextView
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:padding="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/register"
+            android:text="Register"
+            android:textColor="@color/dark_primary_color"
+            android:textSize="20sp" />
+    </androidx.cardview.widget.CardView>
+
 
 </LinearLayout>

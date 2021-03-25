@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".individual.BuyerActivity"
-    android:background="@color/primary_color">
+    android:background="@color/leaf_green">
 
     <androidx.cardview.widget.CardView
         android:layout_margin="10dp"
@@ -23,13 +23,13 @@
             android:text="Buying Request History"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@color/dark_primary_color"
-            android:background="@color/leaf_green"/>
+            android:textColor="@color/leaf_green"
+            android:background="@color/dark_primary_color"/>
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_buyer"
-        app:backgroundTint="@color/leaf_green"
+        app:backgroundTint="@color/accent_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

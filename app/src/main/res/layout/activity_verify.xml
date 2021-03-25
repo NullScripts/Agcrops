@@ -38,10 +38,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="40dp"
-            android:background="@color/dark_primary_color"
+            android:backgroundTint="@color/accent_color"
             android:text="Verify"
             android:textAllCaps="false"
-            android:textColor="#ffffff" />
+            android:textColor="@color/dark_primary_color" />
         <com.wang.avi.AVLoadingIndicatorView
             android:id="@+id/progressBar"
             android:layout_width="100dp"

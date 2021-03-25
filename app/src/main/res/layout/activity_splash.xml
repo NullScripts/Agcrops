@@ -47,11 +47,12 @@
         android:fontFamily="sans-serif-thin"
         android:gravity="center"
         android:text="@string/app_name"
-        android:textSize="60dp"
+        android:textSize="50dp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/icon" />
+        app:layout_constraintTop_toBottomOf="@id/icon"
+        android:layout_marginTop="100dp"/>
 
     <TextView
         android:id="@+id/middle"
@@ -60,7 +61,7 @@
         android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="@string/from"
-        android:textSize="30dp"
+        android:textSize="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appname" />
@@ -72,7 +73,7 @@
         android:fontFamily="monospace"
         android:gravity="center"
         android:text="@string/nullscripts"
-        android:textSize="40dp"
+        android:textSize="30dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/middle" />
