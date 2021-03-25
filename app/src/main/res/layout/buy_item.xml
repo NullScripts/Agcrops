@@ -30,6 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/address_buyer"
-            android:text="Sell"/>
+            android:backgroundTint="@color/leaf_green"
+            android:text="Sell"
+            android:textColor="@color/secondary_text"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

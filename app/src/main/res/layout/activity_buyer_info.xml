@@ -76,6 +76,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/accent_color"
             android:text="Post Buying Request"
+            android:textColor="@color/black"
             android:layout_gravity="center"
             android:id="@+id/buyer_req"/>
 

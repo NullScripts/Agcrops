@@ -23,9 +23,9 @@ class ShopFragment : Fragment() {
         shopViewModel =
                 ViewModelProvider(this).get(ShopViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_shop, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
+//        val textView: TextView = root.findViewById(R.id.text_home)
         shopViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+//            textView.text = it
         })
         return root
     }

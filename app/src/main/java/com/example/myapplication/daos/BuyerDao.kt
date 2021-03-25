@@ -7,8 +7,8 @@ import kotlinx.coroutines.launch
 
 class BuyerDao {
     private val db = FirebaseDatabase.getInstance()
-    private val reference = db.reference.child("buyers")
-     private var flag:Boolean=false
+    val reference = db.reference.child("buyers")
+    private var flag:Boolean=false
 
     fun addBuyingRequest(address: String , requirements: String):Boolean{
         val currentUser = FirebaseAuth.getInstance().currentUser!!.uid

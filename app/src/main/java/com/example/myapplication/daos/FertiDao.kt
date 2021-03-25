@@ -6,9 +6,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class FertiDao {
-    val db = FirebaseDatabase.getInstance()
-    val reference = db.reference.child("fertilizer")
-    var flag:Boolean=false
+    private val db = FirebaseDatabase.getInstance()
+    private val reference = db.reference.child("fertilizer")
+    private var flag:Boolean=false
 
     fun addSellingRequest(address: String , ferti_type: String):Boolean{
         val currentUser = FirebaseAuth.getInstance().currentUser!!.uid
