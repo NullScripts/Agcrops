@@ -30,24 +30,24 @@ class OnboardingActivity : AppCompatActivity() {
     private val introSliderAdapter = IntroSliderAdapter(
         listOf(
             IntroSlide(
-                "Helix",
-                "Welcome to HELIX a platform for launching your start-up",
-                R.drawable.connect
+                "AGCROPS",
+                "Welcome to AGCROPS a platform to make farming activities easy!",
+                R.drawable.farmingactivities
             ),
             IntroSlide(
-                "Ideas",
-                "Pitch your Idea and get Investment",
-                R.drawable.investers
+                "Tractor Booking",
+                "Add your requirements and book a tractor",
+                R.drawable.tractor
             ),
             IntroSlide(
-                "Start-up",
-                "interaction between Start-ups and Investors",
-                R.drawable.userfriendly
+                "Wanna Buy/Sell grains or fertilizers?",
+                "We've got you covered",
+                R.drawable.grains
             ),
             IntroSlide(
                 "Socialize",
-                "Connect with your peers",
-                R.drawable.socialize
+                "Connect with Local Workers",
+                R.drawable.worker
             )
         )
     )
@@ -58,9 +58,7 @@ class OnboardingActivity : AppCompatActivity() {
         val textSkipIntro =findViewById<TextView>(R.id.textSkipIntro)
         val introSliderViewPager =findViewById<ViewPager2>(R.id.introSliderViewPager)
         indicatorsContainer = findViewById<LinearLayout>(R.id.indicatorsContainer)
-
-
-                activity = this
+        activity = this
         preferences = getSharedPreferences("IntroSlider", Context.MODE_PRIVATE)
 
         Log.d("OnBoarding", "onCreate: "+preferences.getBoolean(prefShowIntro,false));
