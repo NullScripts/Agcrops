@@ -3,105 +3,113 @@ package com.example.myapplication.authentication
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
+
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.*
+import java.util.concurrent.TimeUnit
+import kotlinx.android.synthetic.main.activity_phone_auth.*
+
 
 
 class PhoneAuthActivity : AppCompatActivity() {
-    private var retrofit: Retrofit? = null
-    private var retrofitInterface: RetrofitInterface? = null
-    private val BASE_URL = "http://192.168.1.100:3000"
-    lateinit var phone: EditText
+    lateinit var auth: FirebaseAuth
+    lateinit var storedVerificationId:String
+    lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+    private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone_auth)
-        retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        retrofitInterface = retrofit?.create(RetrofitInterface::class.java)
 
-        val sendotp = findViewById<Button>(R.id.sendotp)
-        val verify=findViewById<Button>(R.id.verifyBtn)
-        phone = findViewById(R.id.phoneNumber)
+        auth=FirebaseAuth.getInstance()
 
-        sendotp.setOnClickListener {
-            sentotp()
-        }
-        verify.setOnClickListener {
-            verifyotp()
+
+        val Login=findViewById<Button>(R.id.sendotp)
+
+
+        var currentUser = auth.currentUser
+        if(currentUser != null) {
+            startActivity(Intent(applicationContext, MainActivity::class.java))
+            finish()
         }
 
-    findViewById<TextView>(R.id.register).setOnClickListener{
-        startActivity(Intent(this,RegisterActivity::class.java))
-    }
-    }
+        Login.setOnClickListener{
+            showProgressbar()
+            login()
+        }
 
 
-    private fun sentotp() {
+        callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
-        val phonenumber=phone.text.toString()
-
-
-        val call: Call<Void?>? = retrofitInterface!!.executeLogin(phonenumber)
-        call!!.enqueue(object : Callback<Void?> {
-            override fun onResponse(call: Call<Void?>, response: Response<Void?>) {
-                if (response.code() == 200) {
-                    Toast.makeText(this@PhoneAuthActivity,
-                            "OTP sent", Toast.LENGTH_LONG).show()
-                } else if (response.code() == 400) {
-                    Toast.makeText(this@PhoneAuthActivity,
-                            "Error", Toast.LENGTH_LONG).show()
-                }
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                startActivity(Intent(applicationContext, RegisterActivity::class.java))
+                finish()
             }
 
-            override fun onFailure(call: Call<Void?>, t: Throwable) {
-                Toast.makeText(this@PhoneAuthActivity, t.message,
-                        Toast.LENGTH_LONG).show()
-            }
-        })
-    }
-
-
-    private  fun verifyotp(){
-        val otp=findViewById<EditText>(R.id.otp)
-        val phonenumber=phone.text.toString()
-        val map = HashMap<String, String>()
-        map["phonenumber"] = phonenumber
-        map["code"] = otp.text.toString()
-
-        val call: Call<Void?>? = retrofitInterface!!.verify(map)
-        call!!.enqueue(object : Callback<Void?> {
-            override fun onResponse(call: Call<Void?>, response: Response<Void?>) {
-                if (response.code() == 200) {
-                    Toast.makeText(this@PhoneAuthActivity,
-                        "OTP Verified", Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this@PhoneAuthActivity,RegisterActivity::class.java))
-                } else if (response.code() == 400) {
-                    Toast.makeText(this@PhoneAuthActivity,
-                        "Error", Toast.LENGTH_LONG).show()
-                }
+            override fun onVerificationFailed(e: FirebaseException) {
+                Toast.makeText(applicationContext, "Failed", Toast.LENGTH_LONG).show()
             }
 
-            override fun onFailure(call: Call<Void?>, t: Throwable) {
-                Toast.makeText(this@PhoneAuthActivity, t.message,
-                    Toast.LENGTH_LONG).show()
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
+
+                Log.d("TAG","onCodeSent:$verificationId")
+                storedVerificationId = verificationId
+                resendToken = token
+                hideProgressbar()
+                var intent = Intent(applicationContext,VerifyActivity::class.java)
+                intent.putExtra("storedVerificationId",storedVerificationId)
+                startActivity(intent)
             }
-        })
-
+        }
+        register.setOnClickListener {
+            startActivity(Intent(this,RegisterActivity::class.java))
+        }
     }
 
+    private fun login() {
+        val mobileNumber=findViewById<EditText>(R.id.phoneNumber)
+        var number=mobileNumber.text.toString().trim()
+
+        if(!number.isEmpty()){
+            number="+91"+number
+            sendVerificationcode (number)
+        }else{
+            Toast.makeText(this,"Enter mobile number",Toast.LENGTH_SHORT).show()
+        }
     }
 
+    private fun sendVerificationcode(number: String) {
+        val options = PhoneAuthOptions.newBuilder(auth)
+            .setPhoneNumber(number)
+            .setTimeout(60L, TimeUnit.SECONDS)
+            .setActivity(this)
+            .setCallbacks(callbacks)
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+    }
+
+    fun showProgressbar(){
+        progressBar.show()
+        progressBar.visibility= View.VISIBLE
+    }
+
+    fun hideProgressbar(){
+        if(progressBar.visibility==View.VISIBLE) {
+            progressBar.hide()
+            progressBar.visibility = View.INVISIBLE
+        }
+    }
+}
 

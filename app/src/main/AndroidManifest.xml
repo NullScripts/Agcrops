@@ -14,7 +14,8 @@
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".individual.FertilizerSellingActivity"></activity>
+        <activity android:name=".authentication.VerifyActivity"></activity>
+        <activity android:name=".individual.FertilizerSellingActivity" />
         <activity android:name=".individual.TractorRentingActivity" />
         <activity android:name=".individual.BuyerActivity" />
         <activity android:name=".activities.tractor_infoActivity" />

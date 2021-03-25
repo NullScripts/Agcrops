@@ -55,7 +55,22 @@
                 android:text="Worker"
                 android:onClick="onRadioButtonClicked"
                 />
+            <RadioButton android:id="@+id/radionone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="None"
+                android:onClick="onRadioButtonClicked"
+                />
         </RadioGroup>
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/progressBar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            style="@style/AVLoadingIndicatorView"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+            app:indicatorName="BallClipRotatePulseIndicator"
+            app:indicatorColor="@color/colorAccent" />
 
         <Button
             android:layout_width="wrap_content"
