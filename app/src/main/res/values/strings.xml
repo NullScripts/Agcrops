@@ -17,4 +17,49 @@
     <string name="menu_about">Options</string>
     <string name="identification">Identification</string>
     <string name="menu_logout">Logout</string>
+
+    <string name="continue_text">Continue</string>
+    <string name="register_text">Register</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+
+    <string name="decline">Decline</string>
+    <string name="permission_require">Permission Required</string>
+    <string name="decline_failed">Decline Failed</string>
+    <string name="decline_success">Decline Success</string>
+    <string name="token_not_found">Token Not FOund</string>
+    <string name="start_uber">START UBER</string>
+    <string name="rider_not_found">Rider Not Found</string>
+    <string name="accept_failed">Accept Failed</string>
+    <string name="accept_success">Accept Success</string>
+    <string name="driver_arrived">Driver Arrived</string>
+    <string name="your_driver_arrived">Your driver Arrived</string>
+    <string name="time_over">Time Over</string>
+
+    <string name="drivers_not_found">Drivers Not Found</string>
+    <string name="key_not_found">Key Not Found</string>
+    <string name="welcome">Good Afternoon</string>
+    <string name="choose_a_saved_place">Choose a saved place</string>
+    <string name="city_name_not_found">City Name Not Found</string>
+    <string name="title_activity_request_driver">Map</string>
+    <string name="pay_by_cash">Pay by Cash</string>
+    <string name="confirm_uber">Confirm UBEr</string>
+    <string name="confirm_pickup_spot">Confirm Pickup Spot</string>
+    <string name="address_demo">Sinhgad Road</string>
+    <string name="confirm_pickup">Confirm Pickup</string>
+    <string name="meet_driver_here">Meet Driver Here</string>
+    <string name="finding_your_ride">Finding Your Ride</string>
+    <string name="send_request_driver_failed">Send Request Driver Failed</string>
+    <string name="no_driver_accept">No Driver Accept</string>
+    <string name="trip_not_found">Trip not found</string>
+    <string name="uber_x">Uber X</string>
+    <string name="car_number_example">MH12XY0000</string>
+    <string name="driver_name_example">Mukesh Joshi</string>
+    <string name="ascii_dot">■</string>
+    <string name="language_example">Marathi</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_tractor_home">TractorHomeActivity</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 </resources>

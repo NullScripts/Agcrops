@@ -23,4 +23,8 @@
     <color name="logo_background">#FFFFFF</color>
     <color name="leaf_green">#b2ff59</color>
 
+    <color name="progress_bar_color">#151828</color>
+    <color name="dark_gray">#656565</color>
+    <color name="colorStartUber">#227159</color>
+
 </resources>
