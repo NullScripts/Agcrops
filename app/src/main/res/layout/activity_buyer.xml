@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".individual.BuyerActivity"
-    android:background="@color/leaf_green">
+    android:background="@color/white">
 
     <androidx.cardview.widget.CardView
         android:layout_margin="10dp"
@@ -15,31 +15,142 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="@color/dark_primary_color"
-        app:cardCornerRadius="25dp">
+        android:background="@color/accent_color"
+       >
         <TextView
             android:padding="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Buying Request History"
+            android:text="Buying History"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@color/leaf_green"
-            android:background="@color/dark_primary_color"/>
+            android:textColor="@color/black"
+            android:background="@color/accent_color"/>
     </androidx.cardview.widget.CardView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_history"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="600dp"
-        app:layout_constraintTop_toBottomOf="@id/history_title"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="10dp"
-        />
+        android:layout_height="400dp"
+        app:layout_constraintTop_toBottomOf="@+id/history_title"
+        android:layout_marginTop="20dp"
+        android:id="@+id/history"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+<!--    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_width="match_parent"-->
+<!--        xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/history_title"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        >-->
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:padding="8dp"-->
+<!--            android:background="@color/leaf_green"-->
+<!--            android:layout_margin="16dp"-->
+<!--            >-->
+<!--            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                android:id="@+id/date"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:padding="5dp"-->
+<!--                >-->
+<!--                <com.google.android.material.textview.MaterialTextView-->
+<!--                    android:id="@+id/fakedate"-->
+<!--                    android:layout_width="190dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:drawablePadding="10dp"-->
+<!--                    android:background="@color/leaf_green"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@android:color/black"-->
+<!--                    android:text="Requested at"-->
+<!--                    android:textAlignment="viewStart"-->
+<!--                    android:drawableStart="@drawable/ic_twotone_calendar_today_24"-->
+<!--                    android:drawableLeft="@drawable/ic_twotone_calendar_today_24"-->
+<!--                    android:gravity="start" />-->
+<!--                <com.google.android.material.textview.MaterialTextView-->
+<!--                    android:id="@+id/originaldate"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:background="@color/leaf_green"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textColor="@android:color/black"-->
+<!--                    android:text="08/09/2001"-->
+<!--                    android:textAlignment="viewStart"-->
+<!--                    android:gravity="start" />-->
+<!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
+<!--            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                android:id="@+id/requirements"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/date"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:padding="5dp"-->
+<!--                >-->
+<!--                <com.google.android.material.textview.MaterialTextView-->
+<!--                    android:id="@+id/fakerequirements"-->
+<!--                    android:layout_width="190dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:drawablePadding="10dp"-->
+<!--                    android:background="@color/leaf_green"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@android:color/black"-->
+<!--                    android:text="Requirements"-->
+<!--                    android:textAlignment="viewStart"-->
+<!--                    android:drawableStart="@drawable/ic_twotone_shopping_cart_24"-->
+<!--                    android:drawableLeft="@drawable/ic_twotone_shopping_cart_24"-->
+<!--                    android:gravity="start" />-->
+<!--                <com.google.android.material.textview.MaterialTextView-->
+<!--                    android:id="@+id/originalrequirements"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:background="@color/leaf_green"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textColor="@android:color/black"-->
+<!--                    android:text="Onions and Chillies"-->
+<!--                    android:textAlignment="viewStart"-->
+<!--                    android:gravity="start" />-->
+<!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/deleteRequest"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/requirements"-->
+<!--                android:text="Delete"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:backgroundTint="@color/leaf_green"-->
+<!--                android:textColor="@android:color/black"-->
+<!--                android:padding="5dp"-->
+<!--                android:drawableRight="@drawable/ic_twotone_delete_24"/>-->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </com.google.android.material.card.MaterialCardView>-->
+
+<!--&lt;!&ndash;    <androidx.recyclerview.widget.RecyclerView&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/recycler_view_history"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="600dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/history_title"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintLeft_toLeftOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintRight_toRightOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_margin="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        />&ndash;&gt;-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_buyer"

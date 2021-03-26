@@ -13,15 +13,15 @@ class SellAdapter(val arraylist:ArrayList<SellPost>,val context: Context): Recyc
 
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         fun bindItem(model:SellPost){
-            itemView.name_buyer.text=model.name
-            itemView.address_buyer.text=model.address
+            itemView.name_buyer.text=model.Name
+            itemView.address_buyer.text=model.email
 
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.buy_item,parent,false)
+        val view = LayoutInflater.from(context).inflate(R.layout.buy_item,parent,false)
         return ViewHolder(view)
     }
 

@@ -73,9 +73,7 @@ class PhoneAuthActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-        register.setOnClickListener {
-            startActivity(Intent(this,RegisterActivity::class.java))
-        }
+
     }
 
     private fun login() {
