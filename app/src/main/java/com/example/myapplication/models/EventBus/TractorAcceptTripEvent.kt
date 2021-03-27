@@ -1,4 +1,4 @@
 package com.example.myapplication.models.EventBus
 
-class DriverAcceptTripEvent (var tripId : String){
+class TractorAcceptTripEvent (var tripId : String){
 }

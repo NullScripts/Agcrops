@@ -1,8 +1,7 @@
 package com.example.myapplication.models
 
-class RiderInfoModel {
+class BookInfoModel {
     var firstName : String = ""
     var lastName : String = ""
     var phoneNumber : String = ""
-    var avatar:String=""
 }

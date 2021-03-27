@@ -25,9 +25,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
 import com.example.myapplication.Common
 import com.example.myapplication.R
-import com.example.myapplication.models.EventBus.DriverRequestReciever
-import com.example.myapplication.models.EventBus.NotifyRiderEvent
-import com.example.myapplication.models.RiderInfoModel
+import com.example.myapplication.models.EventBus.TractorRequestReciever
+import com.example.myapplication.models.EventBus.NotifyBookEvent
+import com.example.myapplication.models.BookInfoModel
 import com.example.myapplication.models.TripPlanModel
 import com.example.myapplication.remote.IGoogleAPI
 import com.example.myapplication.remote.RetrofitClient
@@ -85,15 +85,15 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
     private lateinit var txt_type_uber : TextView
     private lateinit var img_round : ImageView
     private lateinit var layout_start_uber : CardView
-    private lateinit var txt_rider_name : TextView
+    private lateinit var txt_book_name : TextView
     private lateinit var txt_start_uber_estimate_distance : TextView
     private lateinit var txt_start_uber_estimate_time : TextView
     private lateinit var img_phone_call : ImageView
     private lateinit var btn_start_uber : LoadingButton
 
 
-    private lateinit var layout_notify_rider: LinearLayout
-    private lateinit var txt_notify_rider: TextView
+    private lateinit var layout_notify_book: LinearLayout
+    private lateinit var txt_notify_book: TextView
     private lateinit var progress_notify: ProgressBar
 
     private var pickupGeoFire : GeoFire?= null
@@ -126,11 +126,11 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
     // Online system
     private lateinit var onlineRef : DatabaseReference
     private var currentUserRef : DatabaseReference? = null
-    private lateinit var driversLocationRef : DatabaseReference
+    private lateinit var tractorsLocationRef : DatabaseReference
     private lateinit var geoFire : GeoFire
 
     //Decline
-    private var driverRequestRecieved : DriverRequestReciever?=null
+    private var tractorRequestRecieved : TractorRequestReciever?=null
     private var countDownEvent : Disposable?=null
 
     private val onlineValueEventListener = object : ValueEventListener {
@@ -163,8 +163,8 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
 
         if(EventBus.getDefault().hasSubscriberForEvent(TractorRentingActivity::class.java))
             EventBus.getDefault().removeStickyEvent(TractorRentingActivity::class.java)
-        if(EventBus.getDefault().hasSubscriberForEvent(NotifyRiderEvent::class.java))
-            EventBus.getDefault().removeStickyEvent(NotifyRiderEvent::class.java)
+        if(EventBus.getDefault().hasSubscriberForEvent(NotifyBookEvent::class.java))
+            EventBus.getDefault().removeStickyEvent(NotifyBookEvent::class.java)
         EventBus.getDefault().unregister(this)
         super.onDestroy()
     }
@@ -207,20 +207,20 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
         txt_type_uber = findViewById(R.id.txt_type_uber) as TextView
         img_round = findViewById(R.id.img_round) as ImageView
         layout_start_uber = findViewById(R.id.layout_start_uber) as CardView
-        txt_rider_name = findViewById(R.id.txt_rider_name) as TextView
+        txt_book_name = findViewById(R.id.txt_rider_name) as TextView
         txt_start_uber_estimate_distance = findViewById(R.id.txt_start_uber_estimate_distance) as TextView
         txt_start_uber_estimate_time = findViewById(R.id.txt_start_uber_estimate_time) as TextView
         img_phone_call = findViewById(R.id.img_phone_call) as ImageView
         btn_start_uber = findViewById(R.id.btn_start_uber) as LoadingButton
 
 
-        layout_notify_rider = findViewById(R.id.layout_notify_rider) as LinearLayout
-        txt_notify_rider = findViewById(R.id.txt_notify_rider) as TextView
+        layout_notify_book = findViewById(R.id.layout_notify_rider) as LinearLayout
+        txt_notify_book = findViewById(R.id.txt_notify_rider) as TextView
         progress_notify = findViewById(R.id.progress_notify) as ProgressBar
 
         //Event
         chip_decline.setOnClickListener{
-            if(driverRequestRecieved != null)
+            if(tractorRequestRecieved != null)
             {
                 if(countDownEvent != null)
                 {
@@ -230,8 +230,8 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
                 layout_accept.visibility = View.GONE
                 mMap.clear()
                 circularProgressBar.progress = 0f
-                UserUtils.sendDeclineRequest(root_layout, Activity(), driverRequestRecieved!!.key!!)
-                driverRequestRecieved = null
+                UserUtils.sendDeclineRequest(root_layout, Activity(), tractorRequestRecieved!!.key!!)
+                tractorRequestRecieved = null
 
             }
         }
@@ -315,14 +315,14 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
                             )
                             val cityName = addressList[0].locality
 
-                            driversLocationRef = FirebaseDatabase.getInstance()
-                                .getReference(Common.DRIVERS_LOCATION_REFERENCE)
+                            tractorsLocationRef = FirebaseDatabase.getInstance()
+                                .getReference(Common.TRACTORS_LOCATION_REFERENCES)
                                 .child(cityName)
-                            currentUserRef = driversLocationRef.child(
+                            currentUserRef = tractorsLocationRef.child(
                                 FirebaseAuth.getInstance().currentUser!!.uid
                             )
 
-                            geoFire = GeoFire(driversLocationRef)
+                            geoFire = GeoFire(tractorsLocationRef)
 
                             //Update Location
                             geoFire.setLocation(
@@ -457,10 +457,10 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public fun onDriverRequestRecieved(event : DriverRequestReciever)
+    public fun onTractorRequestRecieved(event : TractorRequestReciever)
     {
 
-        driverRequestRecieved = event
+        tractorRequestRecieved = event
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -609,7 +609,7 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
             })
     }
 
-    private fun createTripPlan(event: DriverRequestReciever, duration: String, distance: String) {
+    private fun createTripPlan(event: TractorRequestReciever, duration: String, distance: String) {
         setLayoutProcess(true)
 
         // Sync server time with device
@@ -622,9 +622,9 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val timeOffset = snapshot.getValue(Long::class.java)
 
-                    //Load rider information
+                    //Load booking information
                     FirebaseDatabase.getInstance()
-                        .getReference(Common.RIDER_INFO)
+                        .getReference(Common.Book_INFO_REFERENCE)
                         .child(event!!.key!!)
                         .addListenerForSingleValueEvent(object : ValueEventListener{
                             override fun onCancelled(error: DatabaseError) {
@@ -634,7 +634,7 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 if(snapshot.exists())
                                 {
-                                    val riderModel = snapshot.getValue(RiderInfoModel::class.java)
+                                    val bookInfoModel = snapshot.getValue(BookInfoModel::class.java)
 
                                     // Get Location
                                     if (ActivityCompat.checkSelfPermission(
@@ -656,10 +656,10 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
 
                                             // Create Trip Planner
                                             val tripPlanModel = TripPlanModel()
-                                            tripPlanModel.driver = FirebaseAuth.getInstance().currentUser!!.uid
-                                            tripPlanModel.rider = event!!.key
-                                            tripPlanModel.driverInfoModel = Common.currentUser
-                                            tripPlanModel.riderInfoModel = riderModel
+                                            tripPlanModel.tractor = FirebaseAuth.getInstance().currentUser!!.uid
+                                            tripPlanModel.book = event!!.key
+                                            tripPlanModel.tractorInfoModel = Common.currentTractor
+                                            tripPlanModel.bookInfoModel = bookInfoModel
                                             tripPlanModel.origin = event.pickupLocation
                                             tripPlanModel.originString = event.pickupLocationString
                                             tripPlanModel.destination = event.destinationLocation
@@ -679,17 +679,17 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
                                                     Snackbar.make(mapFragment.requireView()!!, e.message!!, Snackbar.LENGTH_LONG).show()
                                                 }
                                                 .addOnSuccessListener { aVoid ->
-                                                    txt_rider_name.setText(riderModel!!.firstName)
+                                                    txt_book_name.setText(bookInfoModel!!.firstName)
                                                     txt_start_uber_estimate_distance.setText(distance)
                                                     txt_start_uber_estimate_time.setText(duration)
 
-                                                    setOfflineModeForDriver(event, duration, distance)
+                                                    setOfflineModeForTractor(event, duration, distance)
                                                 }
                                         }
                                 }
                                 else
                                 {
-                                    Snackbar.make(mapFragment.requireView()!!, getString(R.string.rider_not_found)+" "+event!!.key!!, Snackbar.LENGTH_LONG).show()
+                                    Snackbar.make(mapFragment.requireView()!!, getString(R.string.book_not_found)+" "+event!!.key!!, Snackbar.LENGTH_LONG).show()
                                 }
                             }
 
@@ -698,10 +698,10 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
             })
     }
 
-    private fun setOfflineModeForDriver(event: DriverRequestReciever, duration: String, distance: String) {
+    private fun setOfflineModeForTractor(event: TractorRequestReciever, duration: String, distance: String) {
 
 
-        UserUtils.sendAcceptRequestToRider(mapFragment.view, this, event.key!!, tripNumberId)
+        UserUtils.sendAcceptRequestToBook(mapFragment.view, this, event.key!!, tripNumberId)
 
         // Go to offline
         if(currentUserRef != null) currentUserRef!!.removeValue()
@@ -743,7 +743,7 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
 
     override fun onKeyEntered(key: String?, location: GeoLocation?) {
         btn_start_uber.isEnabled = true
-        UserUtils.sendNotifyToRider(this, root_layout, key)
+        UserUtils.sendNotifyToBook(this, root_layout, key)
         if(pickupGeoQuery != null)
         {
             // Remove
@@ -766,9 +766,9 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    fun onNotifyRider(event: NotifyRiderEvent)
+    fun onNotifyBook(event: NotifyBookEvent)
     {
-        layout_notify_rider!!.visibility = View.VISIBLE
+        layout_notify_book!!.visibility = View.VISIBLE
         progress_notify.max = Common.WAIT_TIME_IN_MIN * 60
         val countDownTimer = object : CountDownTimer((progress_notify.max * 1000).toLong(), 1000){
             override fun onFinish() {
@@ -778,7 +778,7 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
             override fun onTick(l: Long) {
                 progress_notify.progress += 1
 
-                txt_notify_rider.text = String.format("%02d:%02d",
+                txt_notify_book.text = String.format("%02d:%02d",
                     TimeUnit.MILLISECONDS.toMinutes(1) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(1)),
                     TimeUnit.MILLISECONDS.toSeconds(1) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(1)))
             }

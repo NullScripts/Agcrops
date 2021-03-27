@@ -23,32 +23,23 @@ import com.google.maps.android.ui.IconGenerator
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
-import kotlin.collections.HashSet
 
 
 object Common {
-
-    fun buildWelcomeMessage(): String {
-        return StringBuilder("Welcome, ")
-            .append(currentRider!!.firstName)
-            .append(" ")
-            .append(currentRider!!.lastName)
-            .toString()
-    }
 
     fun showNotification(context: Context, id: Int, title: String?, body: String?, intent: Intent?) {
         var pendingIntent: PendingIntent? = null
         if (intent != null)
             pendingIntent = PendingIntent.getActivity(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-        val NOTIFICATION_CHANNEL_ID = "uber_clone"
+        val NOTIFICATION_CHANNEL_ID = "tractor_booking"
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
-                NOTIFICATION_CHANNEL_ID, "Uber Clone",
+                NOTIFICATION_CHANNEL_ID, "Tractor Booking",
                 NotificationManager.IMPORTANCE_HIGH
             )
-            notificationChannel.description = "Uber Clone"
+            notificationChannel.description = "Tractor Book"
             notificationChannel.enableLights(true)
             notificationChannel.lightColor = Color.RED
             notificationChannel.vibrationPattern = longArrayOf(0, 1000, 500, 1000)
@@ -190,29 +181,29 @@ object Common {
 
     val TRIP: String = "Trips"
     val TRIP_KEY: String = "TripKey"
-    val REQUEST_DRIVER_ACCEPT: String = "Accept"
+    val REQUEST_TRACTOR_ACCEPT: String = "Accept"
     val DESTINATION_LOCATION: String="DestinationLocation"
     val DESTINATION_LOCATION_STRING: String="DestinationLocationString"
     val PICKUP_LOCATION_STRING: String="PickupLocationString"
-    val REQUEST_DRIVER_DECLINE: String = "Decline"
-    val RIDER_KEY: String = "RiderKey"
+    val REQUEST_TRACTOR_DECLINE: String = "Decline"
+    val BOOK_KEY: String = "BookKey"
     val PICKUP_LOCATION: String="PickupLocation"
-    val REQUEST_DRIVER_TITLE: String="RequestDriver"
-    val driversSubscribe: MutableMap<String, AnimationModel> = HashMap<String, AnimationModel>()
+    val REQUEST_TRACTOR_TITLE: String="RequestTractor"
+    val tractorsSubscribe: MutableMap<String, AnimationModel> = HashMap<String, AnimationModel>()
     val markerList: MutableMap<String, Marker> = HashMap<String,Marker>()
-    val DRIVER_INFO_REFERENCE: String = "DriverInfo"
-    val driversFound: MutableMap<String, DriverGeoModel> = HashMap<String, DriverGeoModel>()
-    val DRIVERS_LOCATION_REFERENCES: String = "DriversLocation"
+    val TRACTOR_INFO_REFERENCE: String = "TractorInfo"
+    val tractorsFound: MutableMap<String, TractorGeoModel> = HashMap<String, TractorGeoModel>()
+    val TRACTORS_LOCATION_REFERENCES: String = "TractorsLocation"
     val NOTI_BODY: String = "body"
     val NOTI_TITLE: String = "title"
     val TOKEN_REFERENCE: String = "Token"
-    var currentRider: RiderInfoModel? = null
-    val RIDER_INFO_REFERENCE: String = "RiderInfo"
+    var currentBook: BookInfoModel? = null
+    val Book_INFO_REFERENCE: String = "BookInfo"
     val WAIT_TIME_IN_MIN: Int = 1
     val MIN_RANGE_PICKUP_IN_KM: Double = 0.05
     val TRIP_PICKUP_REF: String = "TripPickupLocation"
-    val RIDER_INFO: String = "Riders"
-    val DRIVER_KEY: String="DriverKey"
-    val DRIVERS_LOCATION_REFERENCE: String = "DriversLocation"
-    var currentUser: TractorInfoModel? = null
+    val BOOK_INFO: String = "Bookings"
+    val TRACTOR_KEY: String="TractorKey"
+    val TRACTOR_LOCATION_REFERENCE: String = "TractorsLocation"
+    var currentTractor: TractorInfoModel? = null
 }

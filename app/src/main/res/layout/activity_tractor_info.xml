@@ -15,6 +15,26 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/trac_own_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Owner Name"
+            android:layout_marginTop="50dp"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:textColor="#1F1F1F" />
+
+        <EditText
+            android:id="@+id/trac_own_last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Owner Last Name"
+            android:layout_marginTop="50dp"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:textColor="#1F1F1F" />
+
+        <EditText
             android:id="@+id/trac_phn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

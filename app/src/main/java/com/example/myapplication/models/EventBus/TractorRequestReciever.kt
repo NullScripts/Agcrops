@@ -1,6 +1,6 @@
 package com.example.myapplication.models.EventBus
 
-class DriverRequestReciever{
+class TractorRequestReciever{
     var key : String?= null
     var pickupLocation : String?=null
     var pickupLocationString :String?=null

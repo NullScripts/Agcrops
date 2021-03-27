@@ -1,10 +1,10 @@
 package com.example.myapplication.models
 
 class TripPlanModel{
-    var rider : String? = null
-    var driver : String? = null
-    var driverInfoModel : TractorInfoModel? = null
-    var riderInfoModel : RiderInfoModel? = null
+    var book : String? = null
+    var tractor : String? = null
+    var tractorInfoModel : TractorInfoModel? = null
+    var bookInfoModel : BookInfoModel? = null
     var origin : String? = null
     var originString : String? = null
     var destination : String? = null

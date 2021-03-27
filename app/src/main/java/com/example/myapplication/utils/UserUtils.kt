@@ -7,14 +7,13 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import com.example.myapplication.Common
 import com.example.myapplication.R
-import com.example.myapplication.models.DriverGeoModel
-import com.example.myapplication.models.EventBus.NotifyRiderEvent
+import com.example.myapplication.models.EventBus.NotifyBookEvent
 import com.example.myapplication.models.EventBus.SelectedPlaceEvents
 import com.example.myapplication.models.FCMSendData
 import com.example.myapplication.models.TokenModel
+import com.example.myapplication.models.TractorGeoModel
 import com.example.myapplication.remote.IFCMService
 import com.example.myapplication.remote.RetrofitFCMClient
-import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -34,7 +33,7 @@ object UserUtils {
         updateData: Map<String, Any>
     ){
         FirebaseDatabase.getInstance()
-            .getReference(Common.RIDER_INFO_REFERENCE)
+            .getReference(Common.Book_INFO_REFERENCE)
             .child(FirebaseAuth.getInstance().currentUser!!.uid)
             .updateChildren(updateData)
             .addOnFailureListener{e ->
@@ -54,12 +53,11 @@ object UserUtils {
             .setValue(tokenModel)
             .addOnFailureListener{e ->
                 Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
-
             }
             .addOnSuccessListener {  }
     }
 
-    fun sendRequestToDriver(context: Context, mainLayout: RelativeLayout?, foundDriver: DriverGeoModel?, selectedPlaceEvents: SelectedPlaceEvents) {
+    fun sendRequestToTractor(context: Context, mainLayout: RelativeLayout?, foundTractor: TractorGeoModel?, selectedPlaceEvents: SelectedPlaceEvents) {
 
         val compositeDisposable = CompositeDisposable()
         val ifcmService = RetrofitFCMClient.instance!!.create(IFCMService::class.java)
@@ -67,7 +65,7 @@ object UserUtils {
         //Get Token
         FirebaseDatabase.getInstance()
             .getReference(Common.TOKEN_REFERENCE)
-            .child(foundDriver!!.key!!)
+            .child(foundTractor!!.key!!)
             .addListenerForSingleValueEvent(object :ValueEventListener{
                 override fun onCancelled(error: DatabaseError) {
                     Snackbar.make(mainLayout!!, error.message, Snackbar.LENGTH_LONG).show()
@@ -78,9 +76,9 @@ object UserUtils {
                     {
                         val tokenModel = snapshot.getValue(TokenModel::class.java)
                         val notificationData : MutableMap<String, String> = HashMap()
-                        notificationData.put(Common.NOTI_TITLE, Common.REQUEST_DRIVER_TITLE)
+                        notificationData.put(Common.NOTI_TITLE, Common.REQUEST_TRACTOR_TITLE)
                         notificationData.put(Common.NOTI_BODY, "This message represent for Request Driver action")
-                        notificationData.put(Common.RIDER_KEY, FirebaseAuth.getInstance().currentUser!!.uid)
+                        notificationData.put(Common.BOOK_KEY, FirebaseAuth.getInstance().currentUser!!.uid)
 
                         notificationData.put(Common.PICKUP_LOCATION_STRING, selectedPlaceEvents.originString)
                         notificationData.put(Common.PICKUP_LOCATION, StringBuilder()
@@ -107,7 +105,7 @@ object UserUtils {
                                 if(fcmResponse!!.success == 0)
                                 {
                                     compositeDisposable.clear()
-                                    Snackbar.make(mainLayout!!, context.getString(R.string.send_request_driver_failed), Snackbar.LENGTH_LONG).show()
+                                    Snackbar.make(mainLayout!!, context.getString(R.string.send_request_tractor_failed), Snackbar.LENGTH_LONG).show()
 
                                 }
                             },{t : Throwable? ->
@@ -141,9 +139,9 @@ object UserUtils {
                     {
                         val tokenModel = snapshot.getValue(TokenModel::class.java)
                         val notificationData : MutableMap<String, String> = HashMap()
-                        notificationData.put(Common.NOTI_TITLE, Common.REQUEST_DRIVER_DECLINE)
+                        notificationData.put(Common.NOTI_TITLE, Common.REQUEST_TRACTOR_DECLINE)
                         notificationData.put(Common.NOTI_BODY, "This message represent for Request Decline action")
-                        notificationData.put(Common.DRIVER_KEY, FirebaseAuth.getInstance().currentUser!!.uid)
+                        notificationData.put(Common.TRACTOR_KEY, FirebaseAuth.getInstance().currentUser!!.uid)
 
 
                         val fcmSendData = FCMSendData(tokenModel!!.token,notificationData)
@@ -178,7 +176,7 @@ object UserUtils {
 
     }
 
-    fun sendAcceptRequestToRider(
+    fun sendAcceptRequestToBook(
         view: View?,
         requireContext: Context,
         key: String,
@@ -203,9 +201,9 @@ object UserUtils {
                     {
                         val tokenModel = snapshot.getValue(TokenModel::class.java)
                         val notificationData : MutableMap<String, String> = HashMap()
-                        notificationData.put(Common.NOTI_TITLE, Common.REQUEST_DRIVER_ACCEPT)
+                        notificationData.put(Common.NOTI_TITLE, Common.REQUEST_TRACTOR_ACCEPT)
                         notificationData.put(Common.NOTI_BODY, "This message represent for Request Accept action")
-                        notificationData.put(Common.DRIVER_KEY, FirebaseAuth.getInstance().currentUser!!.uid)
+                        notificationData.put(Common.TRACTOR_KEY, FirebaseAuth.getInstance().currentUser!!.uid)
                         notificationData.put(Common.TRIP_KEY, tripNumberId!!)
 
                         val fcmSendData = FCMSendData(tokenModel!!.token,notificationData)
@@ -240,7 +238,7 @@ object UserUtils {
 
     }
 
-    fun sendNotifyToRider(context: Context, view: View, key: String?) {
+    fun sendNotifyToBook(context: Context, view: View, key: String?) {
         val compositeDisposable = CompositeDisposable()
         val ifcmService = RetrofitFCMClient.instance!!.create(IFCMService::class.java)
 
@@ -260,10 +258,10 @@ object UserUtils {
                     {
                         val tokenModel = snapshot.getValue(TokenModel::class.java)
                         val notificationData : MutableMap<String, String> = HashMap()
-                        notificationData.put(Common.NOTI_TITLE, context.getString(R.string.driver_arrived))
-                        notificationData.put(Common.NOTI_BODY, context.getString(R.string.your_driver_arrived))
-                        notificationData.put(Common.DRIVER_KEY, FirebaseAuth.getInstance().currentUser!!.uid)
-                        notificationData.put(Common.RIDER_KEY, key)
+                        notificationData.put(Common.NOTI_TITLE, context.getString(R.string.tractor_arrived))
+                        notificationData.put(Common.NOTI_BODY, context.getString(R.string.your_tractor_arrived))
+                        notificationData.put(Common.TRACTOR_KEY, FirebaseAuth.getInstance().currentUser!!.uid)
+                        notificationData.put(Common.BOOK_KEY, key)
 
                         val fcmSendData = FCMSendData(tokenModel!!.token,notificationData)
 
@@ -279,7 +277,7 @@ object UserUtils {
                                 }
                                 else
                                 {
-                                    EventBus.getDefault().postSticky(NotifyRiderEvent::class.java)
+                                    EventBus.getDefault().postSticky(NotifyBookEvent::class.java)
                                     Snackbar.make(view!!, context.getString(R.string.accept_success), Snackbar.LENGTH_LONG).show()
 
                                 }

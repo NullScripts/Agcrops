@@ -29,15 +29,12 @@ import java.util.*
 
 class tractor_infoActivity : AppCompatActivity() {
 
-
-    private lateinit var providers : List<AuthUI.IdpConfig>
     private lateinit var firebaseAuth : FirebaseAuth
     private lateinit var listener : FirebaseAuth.AuthStateListener
 
     private lateinit var database : FirebaseDatabase
-    private lateinit var driverInfoRef : DatabaseReference
+    private lateinit var tractorInfoRef : DatabaseReference
 
-    private lateinit var progress_bar : ProgressBar
 
     override fun onStop() {
         if(firebaseAuth != null && listener != null) firebaseAuth.removeAuthStateListener(listener)
@@ -54,7 +51,7 @@ class tractor_infoActivity : AppCompatActivity() {
     private fun init()
     {
         database = FirebaseDatabase.getInstance()
-        driverInfoRef = database.getReference(Common.DRIVER_INFO_REFERENCE)
+        tractorInfoRef = database.getReference(Common.TRACTOR_INFO_REFERENCE)
 
         firebaseAuth = FirebaseAuth.getInstance()
         listener = FirebaseAuth.AuthStateListener { myFirebaseAuth ->
@@ -83,7 +80,7 @@ class tractor_infoActivity : AppCompatActivity() {
     }
 
     private fun checkUserFromFirebase() {
-        driverInfoRef
+        tractorInfoRef
             .child(FirebaseAuth.getInstance().currentUser!!.uid)
             .addListenerForSingleValueEvent(object: ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
@@ -106,7 +103,7 @@ class tractor_infoActivity : AppCompatActivity() {
     }
 
     private fun goToTratorRentingActivity(model: TractorInfoModel?) {
-        Common.currentUser = model
+        Common.currentTractor = model
         startActivity(Intent(this, TractorRentingActivity::class.java))
         finish()
     }
@@ -114,10 +111,11 @@ class tractor_infoActivity : AppCompatActivity() {
     private fun registerTractor() {
 
 
-
         val trac_phn = findViewById<View>(R.id.trac_phn) as EditText
         val trac_num = findViewById<View>(R.id.trac_num) as EditText
         val trac_type = findViewById<View>(R.id.trac_type) as EditText
+        val trac_own_name = findViewById<View>(R.id.trac_own_name) as EditText
+        val trac_own_last_name = findViewById<View>(R.id.trac_own_last_name) as EditText
         val trac_info_sub = findViewById<View>(R.id.trac_info_sub) as Button
 
         //set Data
@@ -137,14 +135,26 @@ class tractor_infoActivity : AppCompatActivity() {
                 Toast.makeText(this@tractor_infoActivity, "Please Enter Tractor's Type", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            else if(TextUtils.isDigitsOnly(trac_own_name.text.toString()))
+            {
+                Toast.makeText(this@tractor_infoActivity, "Please Enter Tractor Owners First Name", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            else if(TextUtils.isDigitsOnly(trac_own_last_name.text.toString()))
+            {
+                Toast.makeText(this@tractor_infoActivity, "Please Enter Tractor Owner's Last Name", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             else
             {
                 val model = TractorInfoModel()
                 model.tractorNumber = trac_num.text.toString()
                 model.type = trac_type.text.toString()
                 model.phoneNumber = trac_phn.text.toString()
+                model.ownerFirstName = trac_own_name.text.toString()
+                model.ownerLastName = trac_own_last_name.text.toString()
 
-                driverInfoRef.child(FirebaseAuth.getInstance().currentUser!!.uid)
+                tractorInfoRef.child(FirebaseAuth.getInstance().currentUser!!.uid)
                     .setValue(model)
                     .addOnFailureListener{e ->
                         Toast.makeText(this@tractor_infoActivity, ""+e.message, Toast.LENGTH_SHORT).show()

@@ -1,8 +1,8 @@
 package com.example.myapplication.services
 
 import com.example.myapplication.Common
-import com.example.myapplication.models.EventBus.DeclineRequestFromDriver
-import com.example.myapplication.models.EventBus.DriverAcceptTripEvent
+import com.example.myapplication.models.EventBus.DeclineRequestTractor
+import com.example.myapplication.models.EventBus.TractorAcceptTripEvent
 import com.example.myapplication.utils.UserUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -27,10 +27,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         {
             if(data[Common.NOTI_TITLE] != null)
             {
-                if(data[Common.NOTI_TITLE].equals(Common.REQUEST_DRIVER_DECLINE)){
-                    EventBus.getDefault().postSticky(DeclineRequestFromDriver())
-                }else if(data[Common.NOTI_TITLE].equals(Common.REQUEST_DRIVER_ACCEPT)){
-                       EventBus.getDefault().postSticky(DriverAcceptTripEvent(data[Common.TRIP_KEY]!!))
+                if(data[Common.NOTI_TITLE].equals(Common.REQUEST_TRACTOR_DECLINE)){
+                    EventBus.getDefault().postSticky(DeclineRequestTractor())
+                }else if(data[Common.NOTI_TITLE].equals(Common.REQUEST_TRACTOR_ACCEPT)){
+                       EventBus.getDefault().postSticky(TractorAcceptTripEvent(data[Common.TRIP_KEY]!!))
                 }
                 else{
                     Common.showNotification(this, Random.nextInt(),
