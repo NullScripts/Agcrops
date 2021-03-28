@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:map="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/main_layout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".activities.RequestTractorActivity">
+
+<FrameLayout
+    android:id="@+id/confirm_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".RequestDriverActivity"
+        />
+
+    <View
+        android:id="@+id/fill_maps"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/map_darker"/>
+
+
+</FrameLayout>
+
+
+
+<FrameLayout
+    android:layout_alignParentBottom="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include layout="@layout/layout_confirm_uber"/>
+    <include layout="@layout/layout_confirm_pickup"/>
+    <include layout="@layout/layout_finding_your_driver"/>
+    <include layout="@layout/layout_driver_info"/>
+
+</FrameLayout>
+
+
+</RelativeLayout>
+
+
+
