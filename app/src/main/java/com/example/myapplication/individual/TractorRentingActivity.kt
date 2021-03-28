@@ -624,7 +624,7 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
 
                     //Load booking information
                     FirebaseDatabase.getInstance()
-                        .getReference(Common.Book_INFO_REFERENCE)
+                        .getReference("users")
                         .child(event!!.key!!)
                         .addListenerForSingleValueEvent(object : ValueEventListener{
                             override fun onCancelled(error: DatabaseError) {

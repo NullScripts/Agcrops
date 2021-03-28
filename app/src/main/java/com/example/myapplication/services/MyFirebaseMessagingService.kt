@@ -3,6 +3,7 @@ package com.example.myapplication.services
 import com.example.myapplication.Common
 import com.example.myapplication.models.EventBus.DeclineRequestTractor
 import com.example.myapplication.models.EventBus.TractorAcceptTripEvent
+import com.example.myapplication.models.EventBus.TractorRequestReciever
 import com.example.myapplication.utils.UserUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -23,21 +24,29 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(p0: RemoteMessage) {
         super.onMessageReceived(p0)
         val data = p0.data
-        if(data != null)
+        if(data != null && data[Common.NOTI_TITLE] != null)
         {
-            if(data[Common.NOTI_TITLE] != null)
-            {
-                if(data[Common.NOTI_TITLE].equals(Common.REQUEST_TRACTOR_DECLINE)){
+
+            if(data[Common.NOTI_TITLE].equals(Common.REQUEST_TRACTOR_TITLE)){
+
+                val driverRequestReciever = TractorRequestReciever()
+                driverRequestReciever.key = data[Common.BOOK_KEY]
+                driverRequestReciever.pickupLocation = data[Common.PICKUP_LOCATION]
+                driverRequestReciever.pickupLocationString = data[Common.PICKUP_LOCATION_STRING]
+                driverRequestReciever.destinationLocation = data[Common.DESTINATION_LOCATION]
+                driverRequestReciever.destinationLocation = data[Common.DESTINATION_LOCATION_STRING]
+                EventBus.getDefault().postSticky(driverRequestReciever)
+            }
+            else if(data[Common.NOTI_TITLE].equals(Common.REQUEST_TRACTOR_DECLINE)){
                     EventBus.getDefault().postSticky(DeclineRequestTractor())
-                }else if(data[Common.NOTI_TITLE].equals(Common.REQUEST_TRACTOR_ACCEPT)){
-                       EventBus.getDefault().postSticky(TractorAcceptTripEvent(data[Common.TRIP_KEY]!!))
-                }
-                else{
-                    Common.showNotification(this, Random.nextInt(),
-                            data[Common.NOTI_TITLE],
-                            data[Common.NOTI_BODY],
-                            null)
-                }
+            }else if(data[Common.NOTI_TITLE].equals(Common.REQUEST_TRACTOR_ACCEPT)){
+                   EventBus.getDefault().postSticky(TractorAcceptTripEvent(data[Common.TRIP_KEY]!!))
+            }
+            else{
+                Common.showNotification(this, Random.nextInt(),
+                        data[Common.NOTI_TITLE],
+                        data[Common.NOTI_BODY],
+                        null)
             }
 
         }

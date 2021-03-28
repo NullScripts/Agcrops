@@ -119,6 +119,9 @@ class RequestTractorActivity : AppCompatActivity(), OnMapReadyCallback {
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     fun onTractorAcceptTripEvent(event: TractorAcceptTripEvent)
     {
+        Snackbar.make(main_layout, "Hello Here", Snackbar.LENGTH_LONG).show()
+
+
         FirebaseDatabase.getInstance().getReference(Common.TRIP)
                 .child(event.tripId)
                 .addListenerForSingleValueEvent(object: ValueEventListener {
@@ -204,13 +207,11 @@ class RequestTractorActivity : AppCompatActivity(), OnMapReadyCallback {
                                                     mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 160))
                                                     mMap.moveCamera(CameraUpdateFactory.zoomTo(mMap.cameraPosition!!.zoom-1))
 
-
                                                     initTractorForMoving(event.tripId, tripPlanModel)
 
                                                     confirm_uber_layout.visibility = View.GONE
                                                     confirm_pickup_layout.visibility = View.GONE
                                                     driver_info_layout.visibility = View.VISIBLE
-
 
                                                 }
                                                 catch (e: Exception)

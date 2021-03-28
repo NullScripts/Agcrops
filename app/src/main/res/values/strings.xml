@@ -63,4 +63,5 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_request_tractor">Map</string>
+    <string name="title_activity_renting">RentingActivity</string>
 </resources>

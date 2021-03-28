@@ -115,7 +115,8 @@ class BookFragment : Fragment(), OnMapReadyCallback, FirebaseTractorInfoListener
     }
 
     override fun onDestroy() {
-        fusedLocationProviderClient!!.removeLocationUpdates(locationCallback)
+        if(fusedLocationProviderClient != null)
+            fusedLocationProviderClient!!.removeLocationUpdates(locationCallback)
         super.onDestroy()
     }
 
@@ -343,7 +344,7 @@ class BookFragment : Fragment(), OnMapReadyCallback, FirebaseTractorInfoListener
                                 }
 
                                 override fun onKeyExited(key: String?) {
-                                    TODO("Not yet implemented")
+
                                 }
 
                                 override fun onGeoQueryError(error: DatabaseError?) {
@@ -362,14 +363,14 @@ class BookFragment : Fragment(), OnMapReadyCallback, FirebaseTractorInfoListener
                                         snapshot: DataSnapshot,
                                         previousChildName: String?
                                 ) {
-                                    TODO("Not yet implemented")
+
                                 }
 
                                 override fun onChildChanged(
                                         snapshot: DataSnapshot,
                                         previousChildName: String?
                                 ) {
-                                    TODO("Not yet implemented")
+
                                 }
 
                                 override fun onChildAdded(
@@ -392,7 +393,7 @@ class BookFragment : Fragment(), OnMapReadyCallback, FirebaseTractorInfoListener
 
 
                                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                                    TODO("Not yet implemented")
+
                                 }
 
                             })
