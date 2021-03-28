@@ -38,7 +38,7 @@ class PhoneAuthActivity : AppCompatActivity() {
 
         var currentUser = auth.currentUser
         if(currentUser != null) {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+            startActivity(Intent(applicationContext, RegisterActivity::class.java))
             finish()
         }
 

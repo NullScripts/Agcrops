@@ -15,12 +15,11 @@ import com.example.myapplication.activities.buyer_infoActivity
 import com.example.myapplication.activities.fertilizer_infoActivity
 import com.example.myapplication.activities.tractor_infoActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 import kotlinx.android.synthetic.main.activity_register.*
-
-
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -42,13 +41,47 @@ class RegisterActivity : AppCompatActivity() {
         radioGroup = findViewById(R.id.radioGroup)
 
         auth = FirebaseAuth.getInstance()
+        GlobalScope.launch {
+        var flag = false
+        val ref = FirebaseDatabase.getInstance().reference.child("users")
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (i in snapshot.children) {
+                        if (i.key.toString().equals(FirebaseAuth.getInstance().currentUser!!.uid)) {
 
-        signupBtn.setOnClickListener {
-            showProgressbar()
-            signupUser()
+                            flag = true
+
+//                            Log.e("flag",flag.toString())
+//                            Toast.makeText(this@RegisterActivity,"flag",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    if (flag.toString().equals("true")) {
+                        //Toast.makeText(this@RegisterActivity, "yes", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(applicationContext, MainActivity::class.java))
+                    } else {
+
+                        signupBtn.setOnClickListener {
+                            showProgressbar()
+                            signupUser()
 
 
-        }
+                        }
+                    }
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+
+
+
 
 
     }
@@ -62,21 +95,22 @@ class RegisterActivity : AppCompatActivity() {
             when (view.getId()) {
                 R.id.radiotractor ->
                     if (checked) {
-                        userMap["tractor"]="true"
+                        userMap["designation"]="tractor"
                         intent1 = Intent(this, tractor_infoActivity::class.java)
                     }
                 R.id.radioferti ->
                     if (checked) {
-                       userMap["fertilizer"]="true"
+                       userMap["designation"]="fertilizer"
                         intent1 = Intent(this, fertilizer_infoActivity::class.java)
                     }
                 R.id.radioworker ->
                     if (checked) {
-                        userMap["worker"]="true"
+                        userMap["designation"]="buyer"
                         intent1 = Intent(this, buyer_infoActivity::class.java)
                     }
                 R.id.radionone ->
                     if (checked) {
+                        userMap["designation"]="farmer"
                         intent1 = Intent(this, MainActivity::class.java)
                     }
 
@@ -121,6 +155,7 @@ class RegisterActivity : AppCompatActivity() {
 
         userMap["email"] = email
         userMap["Name"] = username
+        userMap["phone"]=FirebaseAuth.getInstance().currentUser?.phoneNumber.toString()
 
 
         usersRef.child(currentUserId).setValue(userMap)
