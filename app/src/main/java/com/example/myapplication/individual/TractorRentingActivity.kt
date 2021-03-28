@@ -27,7 +27,7 @@ import com.example.myapplication.Common
 import com.example.myapplication.R
 import com.example.myapplication.models.EventBus.TractorRequestReciever
 import com.example.myapplication.models.EventBus.NotifyBookEvent
-import com.example.myapplication.models.BookInfoModel
+import com.example.myapplication.models.UserInfoModel
 import com.example.myapplication.models.TripPlanModel
 import com.example.myapplication.remote.IGoogleAPI
 import com.example.myapplication.remote.RetrofitClient
@@ -634,7 +634,7 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 if(snapshot.exists())
                                 {
-                                    val bookInfoModel = snapshot.getValue(BookInfoModel::class.java)
+                                    val bookInfoModel = snapshot.getValue(UserInfoModel::class.java)
 
                                     // Get Location
                                     if (ActivityCompat.checkSelfPermission(
@@ -659,7 +659,7 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
                                             tripPlanModel.tractor = FirebaseAuth.getInstance().currentUser!!.uid
                                             tripPlanModel.book = event!!.key
                                             tripPlanModel.tractorInfoModel = Common.currentTractor
-                                            tripPlanModel.bookInfoModel = bookInfoModel
+                                            tripPlanModel.userInfoModel = bookInfoModel
                                             tripPlanModel.origin = event.pickupLocation
                                             tripPlanModel.originString = event.pickupLocationString
                                             tripPlanModel.destination = event.destinationLocation
@@ -679,7 +679,7 @@ class TractorRentingActivity : AppCompatActivity() , OnMapReadyCallback, GeoQuer
                                                     Snackbar.make(mapFragment.requireView()!!, e.message!!, Snackbar.LENGTH_LONG).show()
                                                 }
                                                 .addOnSuccessListener { aVoid ->
-                                                    txt_book_name.setText(bookInfoModel!!.firstName)
+                                                    txt_book_name.setText(bookInfoModel!!.name)
                                                     txt_start_uber_estimate_distance.setText(distance)
                                                     txt_start_uber_estimate_time.setText(duration)
 

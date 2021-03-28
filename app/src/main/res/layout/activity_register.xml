@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/register_layout"
     tools:context=".authentication.RegisterActivity"
     android:orientation="vertical">
 
@@ -13,6 +14,15 @@
         android:layout_marginTop="100dp"
         android:layout_marginLeft="50dp"
         android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/profile"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"/>
+
         <EditText
             android:id="@+id/name"
             android:layout_width="match_parent"
@@ -20,15 +30,6 @@
             android:hint="Name"
             android:layout_marginTop="30dp"
             android:inputType="textPersonName"
-            android:paddingLeft="10dp"
-            android:textColor="#1F1F1F" />
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:layout_marginTop="50dp"
-            android:inputType="textEmailAddress"
             android:paddingLeft="10dp"
             android:textColor="#1F1F1F" />
         <RadioGroup
@@ -62,6 +63,7 @@
                 android:onClick="onRadioButtonClicked"
                 />
         </RadioGroup>
+
         <com.wang.avi.AVLoadingIndicatorView
             android:id="@+id/progressBar"
             android:layout_width="100dp"

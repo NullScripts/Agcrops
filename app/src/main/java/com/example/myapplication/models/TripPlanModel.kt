@@ -4,7 +4,7 @@ class TripPlanModel{
     var book : String? = null
     var tractor : String? = null
     var tractorInfoModel : TractorInfoModel? = null
-    var bookInfoModel : BookInfoModel? = null
+    var userInfoModel : UserInfoModel? = null
     var origin : String? = null
     var originString : String? = null
     var destination : String? = null

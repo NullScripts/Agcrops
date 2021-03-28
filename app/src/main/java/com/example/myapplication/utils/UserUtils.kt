@@ -33,7 +33,7 @@ object UserUtils {
         updateData: Map<String, Any>
     ){
         FirebaseDatabase.getInstance()
-            .getReference(Common.Book_INFO_REFERENCE)
+            .getReference(Common.USER_INFO_REFERENCE)
             .child(FirebaseAuth.getInstance().currentUser!!.uid)
             .updateChildren(updateData)
             .addOnFailureListener{e ->

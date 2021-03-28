@@ -27,6 +27,12 @@ import kotlin.collections.HashMap
 
 object Common {
 
+    fun buildWelcomeMessage(): String {
+        return java.lang.StringBuilder("Welcome, ")
+                .append(currentUser!!.name)
+                .toString()
+    }
+
     fun showNotification(context: Context, id: Int, title: String?, body: String?, intent: Intent?) {
         var pendingIntent: PendingIntent? = null
         if (intent != null)
@@ -197,8 +203,8 @@ object Common {
     val NOTI_BODY: String = "body"
     val NOTI_TITLE: String = "title"
     val TOKEN_REFERENCE: String = "Token"
-    var currentBook: BookInfoModel? = null
-    val Book_INFO_REFERENCE: String = "BookInfo"
+    var currentUser: UserInfoModel? = null
+    val USER_INFO_REFERENCE: String = "users"
     val WAIT_TIME_IN_MIN: Int = 1
     val MIN_RANGE_PICKUP_IN_KM: Double = 0.05
     val TRIP_PICKUP_REF: String = "TripPickupLocation"
