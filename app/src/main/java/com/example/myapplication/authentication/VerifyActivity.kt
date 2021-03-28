@@ -54,6 +54,7 @@ class VerifyActivity : AppCompatActivity() {
                     } else {
 
                         if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                            hideProgressbar()
 
                             Toast.makeText(this,"Invalid OTP",Toast.LENGTH_SHORT).show()
                         }
