@@ -23,7 +23,7 @@ tools:context=".individual.TractorRentingActivity">
     android:layout_margin="16dp"
     android:text="@string/decline"
     android:textColor="@color/white"
-    app:chipBackgroundColor="@color/colorAccent"
+    app:chipBackgroundColor="@color/dark_primary_color"
     app:chipIcon="@drawable/ic_baseline_clear_24"
     app:chipIconTint="@color/white"/>
 
@@ -34,7 +34,7 @@ tools:context=".individual.TractorRentingActivity">
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
     android:layout_margin="8dp"
-    map:cardBackgroundColor="@color/colorAccent"
+    map:cardBackgroundColor="@color/dark_primary_color"
     map:cardCornerRadius="8dp">
     <LinearLayout
         android:orientation="vertical"
@@ -56,7 +56,7 @@ tools:context=".individual.TractorRentingActivity">
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="8dp"
                 android:fontFamily="@font/uber_move"
-                android:text="Uber"
+                android:text="AGCROPS"
                 android:textColor="@color/white"
                 android:textSize="18sp"/>
 

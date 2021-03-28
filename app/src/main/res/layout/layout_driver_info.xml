@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/driver_info_layout"
-    android:visibility="gone"
+    android:visibility="visible"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -33,7 +33,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/car_display"
+                    android:src="@drawable/tractor"
                     android:layout_marginLeft="50dp"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
