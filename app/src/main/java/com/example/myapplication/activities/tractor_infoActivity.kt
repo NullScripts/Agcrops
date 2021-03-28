@@ -36,6 +36,11 @@ class tractor_infoActivity : AppCompatActivity() {
     private lateinit var tractorInfoRef : DatabaseReference
 
 
+    override fun onStart() {
+        super.onStart()
+        firebaseAuth.addAuthStateListener(listener)
+    }
+
     override fun onStop() {
         if(firebaseAuth != null && listener != null) firebaseAuth.removeAuthStateListener(listener)
         super.onStop()
