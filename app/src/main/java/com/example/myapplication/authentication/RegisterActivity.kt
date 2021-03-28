@@ -46,18 +46,19 @@ class RegisterActivity : AppCompatActivity() {
         val ref = FirebaseDatabase.getInstance().reference.child("users")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                showProgressbar()
                 if (snapshot.exists()) {
                     for (i in snapshot.children) {
                         if (i.key.toString().equals(FirebaseAuth.getInstance().currentUser!!.uid)) {
 
                             flag = true
 
-//                            Log.e("flag",flag.toString())
-//                            Toast.makeText(this@RegisterActivity,"flag",Toast.LENGTH_SHORT).show()
+
                         }
                     }
                     if (flag.toString().equals("true")) {
                         //Toast.makeText(this@RegisterActivity, "yes", Toast.LENGTH_SHORT).show()
+                        hideProgressbar()
                         startActivity(Intent(applicationContext, MainActivity::class.java))
                     } else {
 

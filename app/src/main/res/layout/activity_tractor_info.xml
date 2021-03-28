@@ -6,11 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".activities.tractor_infoActivity"
     android:orientation="vertical">
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/progressBar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        style="@style/AVLoadingIndicatorView"
+        android:visibility="invisible"
+        android:layout_marginTop="60dp"
+
+        android:layout_gravity="center"
+        app:indicatorName="BallClipRotatePulseIndicator"
+        app:indicatorColor="@color/colorAccent" />
 
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="500dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="50dp"
         android:orientation="vertical">
 
@@ -23,6 +34,7 @@
             android:inputType="text"
             android:paddingLeft="10dp"
             android:textColor="#1F1F1F" />
+
 
         <EditText
             android:id="@+id/trac_own_last_name"
@@ -74,5 +86,6 @@
             android:id="@+id/trac_info_sub"/>
 
     </LinearLayout>
+
 
 </LinearLayout>

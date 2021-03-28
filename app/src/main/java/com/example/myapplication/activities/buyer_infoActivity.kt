@@ -29,6 +29,7 @@ class buyer_infoActivity : AppCompatActivity() {
         val ref = FirebaseDatabase.getInstance().reference.child("buyers")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                showProgressbar()
                 if (snapshot.exists()) {
                     for (i in snapshot.children) {
                         if (i.key.toString().equals(FirebaseAuth.getInstance().currentUser!!.uid)) {
@@ -37,12 +38,14 @@ class buyer_infoActivity : AppCompatActivity() {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     val data=snapshot.getValue().toString()
                                     if(data.equals("worker")){
+                                        hideProgressbar()
                                         startActivity(Intent(applicationContext,BuyerActivity::class.java))
                                     }
 
                                 }
 
                                 override fun onCancelled(error: DatabaseError) {
+                                    hideProgressbar()
                                     TODO("Not yet implemented")
                                 }
 
@@ -64,6 +67,7 @@ class buyer_infoActivity : AppCompatActivity() {
             }
 
         })
+        hideProgressbar()
 
         buyerDao = BuyerDao()
 

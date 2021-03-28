@@ -25,6 +25,8 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.iid.FirebaseInstanceId
+import kotlinx.android.synthetic.main.activity_tractor_info.*
+//import kotlinx.android.synthetic.main.activity_register.*
 import java.util.*
 
 class tractor_infoActivity : AppCompatActivity() {
@@ -162,14 +164,27 @@ class tractor_infoActivity : AppCompatActivity() {
                 tractorInfoRef.child(FirebaseAuth.getInstance().currentUser!!.uid)
                     .setValue(model)
                     .addOnFailureListener{e ->
+                        hideProgressbar()
                         Toast.makeText(this@tractor_infoActivity, ""+e.message, Toast.LENGTH_SHORT).show()
                     }
                     .addOnSuccessListener {
+                        showProgressbar()
                         Toast.makeText(this@tractor_infoActivity, "Register Successfully!", Toast.LENGTH_SHORT).show()
 
                         goToTratorRentingActivity(model)
                     }
             }
+        }
+    }
+    fun showProgressbar(){
+        progressBar.show()
+        progressBar.visibility= View.VISIBLE
+    }
+
+    fun hideProgressbar(){
+        if(progressBar.visibility== View.VISIBLE) {
+            progressBar.hide()
+            progressBar.visibility = View.INVISIBLE
         }
     }
 

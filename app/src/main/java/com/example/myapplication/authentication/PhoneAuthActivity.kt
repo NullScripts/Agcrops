@@ -56,6 +56,7 @@ class PhoneAuthActivity : AppCompatActivity() {
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
+                hideProgressbar()
                 Toast.makeText(applicationContext, "Failed", Toast.LENGTH_LONG).show()
             }
 

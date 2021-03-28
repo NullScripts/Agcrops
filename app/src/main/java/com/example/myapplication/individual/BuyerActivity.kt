@@ -41,12 +41,12 @@ class BuyerActivity : AppCompatActivity() {
 
 
 
-       arraylist=ArrayList()
-
-        seller_recycler.layoutManager= LinearLayoutManager(this)
-
-
-            fetchsellerinfo()
+//       arraylist=ArrayList()
+//
+//        seller_recycler.layoutManager= LinearLayoutManager(this)
+//
+//
+//            fetchsellerinfo()
 //
 
         val ref=db.reference.child("availablebuyers")
