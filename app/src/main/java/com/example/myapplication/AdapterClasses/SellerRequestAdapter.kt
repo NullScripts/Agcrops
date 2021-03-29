@@ -11,7 +11,7 @@ import com.example.myapplication.models.User
 
 import kotlinx.android.synthetic.main.seller_request.view.*
 
-class SellerRequestAdapter(val arraylist:ArrayList<User>, val context: Context): RecyclerView.Adapter<SellerRequestAdapter.ViewHolder>() {
+class SellerRequestAdapter(val arraylist:ArrayList<User>): RecyclerView.Adapter<SellerRequestAdapter.ViewHolder>() {
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -24,7 +24,7 @@ class SellerRequestAdapter(val arraylist:ArrayList<User>, val context: Context):
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.seller_request,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.seller_request,parent,false)
         return ViewHolder(view)
     }
 

@@ -2,6 +2,8 @@ package com.example.myapplication.individual
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,13 +23,13 @@ import kotlinx.coroutines.launch
 class BuyerActivity : AppCompatActivity() {
 
 
-    val db = FirebaseDatabase.getInstance()
-    var id=""
-    val userMap = HashMap<String, Any>()
-    val currentTime = System.currentTimeMillis()
-    val curruserID=FirebaseAuth.getInstance().currentUser!!.uid
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var arraylist: ArrayList<User>
+    private val db = FirebaseDatabase.getInstance()
+    private var id=""
+    private val userMap = HashMap<String, Any>()
+    private val currentTime = System.currentTimeMillis()
+    private val curruserID=FirebaseAuth.getInstance().currentUser!!.uid
+//    private lateinit var recyclerView: RecyclerView
+//    private lateinit var arraylist: ArrayList<User>
 
     var x=""
     var tim=""
@@ -47,6 +49,7 @@ class BuyerActivity : AppCompatActivity() {
 //
 //
 //            fetchsellerinfo()
+       getsellerinfo()
 //
 
         val ref=db.reference.child("availablebuyers")
@@ -59,12 +62,13 @@ class BuyerActivity : AppCompatActivity() {
                     req.addValueEventListener(object :ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
                             requirements=  snapshot.getValue().toString()
-                            originalrequirements.setText(requirements)
+                           findViewById<TextView>(R.id.originalrequirements) .setText(requirements)
 
 
                         }
 
                         override fun onCancelled(error: DatabaseError) {
+                            Toast.makeText(this@BuyerActivity,"failed",Toast.LENGTH_SHORT).show()
 
                         }
 
@@ -73,7 +77,7 @@ class BuyerActivity : AppCompatActivity() {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             tim= snapshot.getValue().toString()
                             t=Utils.getTimeAgo(tim.toLong()).toString()
-                            originaldate.setText(t)
+                            findViewById<TextView>(R.id.originaldate).setText(t)
 
                         }
 
@@ -94,14 +98,13 @@ class BuyerActivity : AppCompatActivity() {
 
         })
 
-
         fab_buyer.setOnClickListener{
 
             addAvailableBuyers(curruserID)
 
         }
 
-        deleteRequest.setOnClickListener{
+        findViewById<TextView>(R.id.deleteRequest) .setOnClickListener{
             val dbref=db.reference.child("availablebuyers").child(curruserID)
             dbref.removeValue()
         }
@@ -111,7 +114,7 @@ class BuyerActivity : AppCompatActivity() {
 
     }
 
-    private fun fetchsellerinfo() {
+    private fun getsellerinfo() {
         Log.e("prash","in if")
         val query=FirebaseDatabase.getInstance().reference.child("users").child(curruserID).child("sellers").child("uid")
         query.addValueEventListener(object :ValueEventListener{
@@ -119,16 +122,17 @@ class BuyerActivity : AppCompatActivity() {
 
                 id=snapshot.getValue().toString()
                 Log.e("id",id)
-                val user_q=FirebaseDatabase.getInstance().reference.child("users").child(id)
+                val user_q=FirebaseDatabase.getInstance().reference.child("users").child(id).child("Name")
                 user_q.addValueEventListener(object :ValueEventListener{
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        if (snapshot.exists()){
+                    override fun onDataChange(p1: DataSnapshot) {
+                        if (p1.exists()){
 
-                            for (j in snapshot.children){
-                                val seller=j.getValue(User::class.java)
-                                arraylist.add(seller!!)
-                            }
-                            recyclerView.adapter = SellerRequestAdapter(arraylist,this@BuyerActivity)
+
+                            val s_name=p1.getValue().toString()
+                            sname.text=s_name
+
+
+
                         }
 
 
@@ -139,6 +143,28 @@ class BuyerActivity : AppCompatActivity() {
                     }
 
                 })
+                val user_query=FirebaseDatabase.getInstance().reference.child("users").child(id).child("phone")
+                user_query.addValueEventListener(object :ValueEventListener{
+                    override fun onDataChange(p0: DataSnapshot) {
+                        if (p0.exists()){
+
+
+                            val s_phone=p0.getValue().toString()
+                            sphone.text=s_phone
+
+
+                        }
+
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
+
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -149,6 +175,48 @@ class BuyerActivity : AppCompatActivity() {
 
 
     }
+
+//    private fun fetchsellerinfo() {
+//        Log.e("prash","in if")
+//        val query=FirebaseDatabase.getInstance().reference.child("users").child(curruserID).child("sellers").child("uid")
+//        query.addValueEventListener(object :ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//
+//                id=snapshot.getValue().toString()
+//
+//                val user_q=FirebaseDatabase.getInstance().reference.child("users").child(id)
+//                user_q.addValueEventListener(object :ValueEventListener{
+//                    override fun onDataChange(p0: DataSnapshot) {
+//                        if (p0.exists()){
+//
+//                            for (j in p0.children){
+//
+//                                val s=j.getValue(User::class.java)
+//                                Log.e("val",s?.Name.toString())
+//
+//                                arraylist.add(s!!)
+//                            }
+//                            recyclerView.adapter = SellerRequestAdapter(arraylist)
+//                        }
+//
+//
+//                    }
+//
+//                    override fun onCancelled(error: DatabaseError) {
+//                        TODO("Not yet implemented")
+//                    }
+//
+//                })
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//
+//        })
+//
+//
+//    }
 
     fun addAvailableBuyers(curruserID: String ){
 

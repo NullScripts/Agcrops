@@ -3,6 +3,7 @@ package com.example.myapplication.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.myapplication.MainActivity
@@ -29,32 +30,16 @@ class buyer_infoActivity : AppCompatActivity() {
         val ref = FirebaseDatabase.getInstance().reference.child("buyers")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                showProgressbar()
+
                 if (snapshot.exists()) {
                     for (i in snapshot.children) {
                         if (i.key.toString().equals(FirebaseAuth.getInstance().currentUser!!.uid)) {
-                            val useref=FirebaseDatabase.getInstance().reference.child("buyers").child(curruserID).child("designation")
-                            useref.addValueEventListener(object :ValueEventListener{
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    val data=snapshot.getValue().toString()
-                                    if(data.equals("worker")){
-                                        hideProgressbar()
-                                        startActivity(Intent(applicationContext,BuyerActivity::class.java))
-                                    }
 
-                                }
-
-                                override fun onCancelled(error: DatabaseError) {
-                                    hideProgressbar()
-                                    TODO("Not yet implemented")
-                                }
-
-                            })
+                            startActivity(Intent(applicationContext,BuyerActivity::class.java))
 
 
 
-//                            Log.e("flag",flag.toString())
-//                            Toast.makeText(this@RegisterActivity,"flag",Toast.LENGTH_SHORT).show()
+
                         }
                     }
 
@@ -63,11 +48,11 @@ class buyer_infoActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                hideProgressbar()
             }
 
         })
-        hideProgressbar()
+
 
         buyerDao = BuyerDao()
 

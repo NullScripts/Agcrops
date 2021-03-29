@@ -52,7 +52,7 @@
             android:layout_marginLeft="100dp"
             android:text=""
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="15sp"
              />
 
         <TextView
@@ -75,7 +75,7 @@
             android:layout_marginLeft="100dp"
             android:text=""
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="15sp"
              />
 
         <TextView
@@ -98,7 +98,7 @@
             android:layout_marginLeft="140dp"
             android:text=""
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="15sp"
              />
 
 
@@ -109,6 +109,7 @@
             android:layout_below="@+id/req_buyer"
             android:backgroundTint="@color/leaf_green"
             android:text="Sell"
+            android:layout_marginTop="10dp"
             android:textColor="@color/secondary_text" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

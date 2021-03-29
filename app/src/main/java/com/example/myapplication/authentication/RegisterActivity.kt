@@ -14,6 +14,7 @@ import com.example.myapplication.R
 import com.example.myapplication.activities.buyer_infoActivity
 import com.example.myapplication.activities.fertilizer_infoActivity
 import com.example.myapplication.activities.tractor_infoActivity
+import com.example.myapplication.individual.BuyerActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -41,34 +42,54 @@ class RegisterActivity : AppCompatActivity() {
         radioGroup = findViewById(R.id.radioGroup)
 
         auth = FirebaseAuth.getInstance()
-        GlobalScope.launch {
+
         var flag = false
         val ref = FirebaseDatabase.getInstance().reference.child("users")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 showProgressbar()
+
                 if (snapshot.exists()) {
                     for (i in snapshot.children) {
                         if (i.key.toString().equals(FirebaseAuth.getInstance().currentUser!!.uid)) {
 
-                            flag = true
+                            val useref=FirebaseDatabase.getInstance().reference.child("users").child(FirebaseAuth.getInstance().currentUser!!.uid).child("designation")
+                            useref.addValueEventListener(object :ValueEventListener{
+                                override fun onDataChange(p0: DataSnapshot) {
+
+                                    val data=p0.getValue().toString()
+
+                                    if(data.equals("buyer")){
+                                        hideProgressbar()
+
+                                        startActivity(Intent(applicationContext, buyer_infoActivity::class.java))
+                                    }
+                                    else if (data.equals("fertilizer")){
+                                        hideProgressbar()
+                                        startActivity(Intent(applicationContext, fertilizer_infoActivity::class.java))
+                                    }
+                                   else if (data.equals("tractor")){
+                                        hideProgressbar()
+                                        startActivity(Intent(applicationContext, tractor_infoActivity::class.java))
+                                    }
+                                    if (data.equals("farmer")){
+                                        hideProgressbar()
+                                        startActivity(Intent(applicationContext, MainActivity::class.java))
+                                    }
+
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    hideProgressbar()
+                                    TODO("Not yet implemented")
+                                }
+
+                            })
 
 
                         }
                     }
-                    if (flag.toString().equals("true")) {
-                        //Toast.makeText(this@RegisterActivity, "yes", Toast.LENGTH_SHORT).show()
-                        hideProgressbar()
-                        startActivity(Intent(applicationContext, MainActivity::class.java))
-                    } else {
 
-                        signupBtn.setOnClickListener {
-                            showProgressbar()
-                            signupUser()
-
-
-                        }
-                    }
 
                 }
             }
@@ -78,6 +99,12 @@ class RegisterActivity : AppCompatActivity() {
             }
 
         })
+        signupBtn.setOnClickListener {
+            showProgressbar()
+            signupUser()
+
+
+        }
     }
 
 
@@ -85,7 +112,12 @@ class RegisterActivity : AppCompatActivity() {
 
 
 
-    }
+
+
+
+
+
+
 
     fun onRadioButtonClicked(view: View) {
         if (view is RadioButton) {
