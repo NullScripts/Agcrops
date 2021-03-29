@@ -344,7 +344,7 @@ class RequestTractorActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun addTractorMarker(destination: LatLng) {
         destinationMarker = mMap.addMarker(MarkerOptions().position(destination).flat(true)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.car)))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.tractor_small)))
     }
 
     private fun addPickupMarkerWithDuration(duration: String, origin: LatLng) {
