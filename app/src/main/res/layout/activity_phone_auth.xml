@@ -78,25 +78,6 @@
 
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:layout_margin="20dp"
-        android:layout_gravity="center"
-        android:padding="2dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/dark_primary_color"
-        app:cardCornerRadius="25dp">
-        <TextView
-            android:layout_margin="20dp"
-            android:layout_gravity="center"
-            android:padding="2dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/register"
-            android:text="Register"
-            android:textColor="@color/dark_primary_color"
-            android:textSize="20sp" />
-    </androidx.cardview.widget.CardView>
 
 
 </LinearLayout>

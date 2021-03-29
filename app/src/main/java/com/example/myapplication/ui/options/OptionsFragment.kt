@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.options
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,23 +10,25 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
+import com.example.myapplication.individual.BuyerActivity
+import kotlinx.android.synthetic.main.fragment_options.view.*
 
 class OptionsFragment : Fragment() {
 
-    private lateinit var optionsViewModel: OptionsViewModel
+
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        optionsViewModel =
-                ViewModelProvider(this).get(OptionsViewModel::class.java)
+
         val root = inflater.inflate(R.layout.fragment_options, container, false)
-        val textView: TextView = root.findViewById(R.id.text_about)
-        optionsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        root.buy.setOnClickListener {
+            startActivity(Intent(context,BuyerActivity::class.java))
+        }
+
+
         return root
     }
 }

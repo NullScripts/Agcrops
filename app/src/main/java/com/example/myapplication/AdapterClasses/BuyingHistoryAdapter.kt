@@ -29,7 +29,7 @@ class BuyingHistoryAdapter(options: FirebaseRecyclerOptions<BuyerRequest>) : Fir
     }
 
     override fun onBindViewHolder(holder: BuyingHistoryViewHolder, position: Int, model: BuyerRequest) {
-        holder.buyingHistoryDate.text = Utils.getTimeAgo(model.createddate)
+        //holder.buyingHistoryDate.text = Utils.getTimeAgo(model.createddate)
         holder.buyingHistoryRequirements.text = model.requirements
 
     }

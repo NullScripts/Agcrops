@@ -17,10 +17,17 @@
     <color name="divider_color">#BDBDBD</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF5252</color>
+
     <color name="colorTextPrimary">#212121</color>
     <color name="colorTextSecondary">#757575</color>
     <color name="logo_background">#FFFFFF</color>
     <color name="leaf_green">#b2ff59</color>
+
+    <color name="progress_bar_color">#151828</color>
+    <color name="dark_gray">#656565</color>
+    <color name="colorStartUber">#227159</color>
+
+    <color name="blue_uber">#2c6ff2</color>
+    <color name="map_darker">#66333333</color>
 
 </resources>

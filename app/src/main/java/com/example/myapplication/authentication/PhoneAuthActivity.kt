@@ -38,7 +38,7 @@ class PhoneAuthActivity : AppCompatActivity() {
 
         var currentUser = auth.currentUser
         if(currentUser != null) {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+            startActivity(Intent(applicationContext, RegisterActivity::class.java))
             finish()
         }
 
@@ -56,6 +56,7 @@ class PhoneAuthActivity : AppCompatActivity() {
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
+                hideProgressbar()
                 Toast.makeText(applicationContext, "Failed", Toast.LENGTH_LONG).show()
             }
 
@@ -73,9 +74,7 @@ class PhoneAuthActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-        register.setOnClickListener {
-            startActivity(Intent(this,RegisterActivity::class.java))
-        }
+
     }
 
     private fun login() {
