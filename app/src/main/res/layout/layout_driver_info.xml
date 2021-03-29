@@ -33,7 +33,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/car_display"
+                    android:src="@drawable/tractor"
                     android:layout_marginLeft="50dp"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView

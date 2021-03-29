@@ -546,7 +546,7 @@ class BookFragment : Fragment(), OnMapReadyCallback, FirebaseTractorInfoListener
                             .flat(true)
                             .title(Common.buildName(tractorGeoModel.tractorInfoModel!!.ownerFirstName, tractorGeoModel.tractorInfoModel!!.ownerLastName))
                             .snippet(tractorGeoModel.tractorInfoModel!!.phoneNumber)
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.car))
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.tractor_small))
                     ))
 
         if(!TextUtils.isEmpty(cityName))
