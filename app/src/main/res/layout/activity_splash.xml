@@ -25,14 +25,14 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
 
             app:cardCornerRadius="@dimen/profile_image_corner_radius">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/agcrops_icon" />
 
