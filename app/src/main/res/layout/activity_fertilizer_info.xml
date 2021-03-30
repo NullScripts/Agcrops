@@ -90,4 +90,6 @@
         android:layout_gravity="center"
         app:indicatorName="BallClipRotatePulseIndicator"
         app:indicatorColor="@color/colorAccent" />
+
+
 </LinearLayout>
