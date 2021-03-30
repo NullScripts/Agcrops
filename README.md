@@ -11,7 +11,7 @@
     An android application targeted for agricultural sector
     <br />
     <br />
-    <a href="https://youtu.be/z28R3LC1FtM">View Demo</a>
+    <a href="https://youtu.be/nbJEsyprcBI">View Demo</a>
     •
     <a href="https://github.com/NullScript/Agcrops/issues">Report Bug</a>
     •
