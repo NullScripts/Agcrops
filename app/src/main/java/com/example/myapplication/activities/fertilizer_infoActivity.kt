@@ -8,7 +8,13 @@ import android.widget.Toast
 import com.example.myapplication.R
 import com.example.myapplication.daos.BuyerDao
 import com.example.myapplication.daos.FertiDao
+import com.example.myapplication.individual.BuyerActivity
 import com.example.myapplication.individual.FertilizerSellingActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 import kotlinx.android.synthetic.main.activity_fertilizer_info.*
 
@@ -18,6 +24,32 @@ class fertilizer_infoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fertilizer_info)
+
+        val ref1 = FirebaseDatabase.getInstance().reference.child("fertilizer")
+        ref1.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if (snapshot.exists()) {
+                    for (i in snapshot.children) {
+                        if (i.key.toString().equals(FirebaseAuth.getInstance().currentUser!!.uid)) {
+
+                            startActivity(Intent(applicationContext, FertilizerSellingActivity::class.java))
+
+
+
+
+                        }
+                    }
+
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                hideProgressbar()
+            }
+
+        })
 
         fertiDao = FertiDao()
 
@@ -36,6 +68,7 @@ class fertilizer_infoActivity : AppCompatActivity() {
                 }
             }
         }
+
 
     }
     fun showProgressbar(){

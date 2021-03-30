@@ -11,10 +11,10 @@
     <string name="nav_header_title">#WE3COOL</string>
     <string name="nav_header_subtitle">agcrops@nullscript.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Options</string>
+    <string name="action_settings">Fertilizers</string>
     <string name="menu_home">Shop</string>
     <string name="menu_edit_profile">Book</string>
-    <string name="menu_about">Options</string>
+    <string name="menu_about">Fertilizers</string>
     <string name="identification">Identification</string>
     <string name="menu_logout">Logout</string>
 
