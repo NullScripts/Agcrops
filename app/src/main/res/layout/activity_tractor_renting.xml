@@ -29,7 +29,7 @@ tools:context=".individual.TractorRentingActivity">
 
 <androidx.cardview.widget.CardView
     android:id="@+id/layout_accept"
-    android:visibility="visible"
+    android:visibility="gone"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"

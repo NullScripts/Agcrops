@@ -47,7 +47,7 @@ class RegisterActivity : AppCompatActivity() {
         val ref = FirebaseDatabase.getInstance().reference.child("users")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                showProgressbar()
+                //showProgressbar()
 
                 if (snapshot.exists()) {
                     for (i in snapshot.children) {
@@ -60,27 +60,27 @@ class RegisterActivity : AppCompatActivity() {
                                     val data=p0.getValue().toString()
 
                                     if(data.equals("buyer")){
-                                        hideProgressbar()
+                                        //hideProgressbar()
 
                                         startActivity(Intent(applicationContext, buyer_infoActivity::class.java))
                                     }
                                     else if (data.equals("fertilizer")){
-                                        hideProgressbar()
+                                        //hideProgressbar()
                                         startActivity(Intent(applicationContext, fertilizer_infoActivity::class.java))
                                     }
                                    else if (data.equals("tractor")){
-                                        hideProgressbar()
+                                        //hideProgressbar()
                                         startActivity(Intent(applicationContext, tractor_infoActivity::class.java))
                                     }
                                     if (data.equals("farmer")){
-                                        hideProgressbar()
+                                        //hideProgressbar()
                                         startActivity(Intent(applicationContext, MainActivity::class.java))
                                     }
 
                                 }
 
                                 override fun onCancelled(error: DatabaseError) {
-                                    hideProgressbar()
+                                    //hideProgressbar()
                                     TODO("Not yet implemented")
                                 }
 

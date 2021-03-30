@@ -53,11 +53,11 @@
     <string name="send_request_tractor_failed">Send Request Tractor Failed</string>
     <string name="no_tractor_accept">No Tractor Available</string>
     <string name="trip_not_found">Trip not found</string>
-    <string name="tractor">Tractor Pro</string>
+    <string name="tractor">Tractor</string>
     <string name="tractor_number_example">MH12XY0000</string>
-    <string name="tractor_owner_name_example">Mukesh Joshi</string>
+    <string name="tractor_owner_name_example">Trudy</string>
     <string name="ascii_dot">■</string>
-    <string name="language_example">Marathi</string>
+    <string name="language_example">English</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_tractor_home">TractorHomeActivity</string>
     <string name="menu_gallery">Gallery</string>

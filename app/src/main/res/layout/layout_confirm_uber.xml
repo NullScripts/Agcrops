@@ -57,7 +57,7 @@
                 android:id="@+id/btn_confirm_uber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
+                android:backgroundTint="@color/dark_primary_color"
                 android:text="@string/confirm_booking"
                 android:textColor="@color/white"/>
 
