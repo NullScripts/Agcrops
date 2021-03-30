@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">Agcrops</string>
+    <string name="from">From</string>
+    <string name="nullscripts">NullScripts</string>
+    <string name="skip_intro">SKIP INTRO</string>
+    <string name="next">NEXT</string>
+    <string name="title_text">Title Text</string>
+    <string name="description_text">Description Text</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">#WE3COOL</string>
+    <string name="nav_header_subtitle">agcrops@nullscript.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Options</string>
+    <string name="menu_home">Shop</string>
+    <string name="menu_edit_profile">Book</string>
+    <string name="menu_about">Options</string>
+    <string name="identification">Identification</string>
+    <string name="menu_logout">Logout</string>
+
+    <string name="continue_text">Continue</string>
+    <string name="register_text">Register</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+
+    <string name="decline">Decline</string>
+    <string name="permission_require">Permission Required</string>
+    <string name="decline_failed">Decline Failed</string>
+    <string name="decline_success">Decline Success</string>
+    <string name="token_not_found">Token Not FOund</string>
+    <string name="deliever">Deliever</string>
+    <string name="book_not_found">Booking Not Found</string>
+    <string name="accept_failed">Accept Failed</string>
+    <string name="accept_success">Accept Success</string>
+    <string name="tractor_arrived">Tractor Arrived</string>
+    <string name="your_tractor_arrived">Your tractor arrived</string>
+    <string name="time_over">Time Over</string>
+
+    <string name="tractors_not_found">Tractors Not Found</string>
+    <string name="key_not_found">Key Not Found</string>
+    <string name="welcome">Good Afternoon</string>
+    <string name="choose_a_saved_place">Choose a saved place</string>
+    <string name="city_name_not_found">City Name Not Found</string>
+    <string name="title_activity_request_driver">Map</string>
+    <string name="pay_by_cash">Pay by Cash</string>
+    <string name="confirm_booking">Confirm Booking</string>
+    <string name="confirm_deliever_spot">Confirm Deliever Spot</string>
+    <string name="address_demo">Sinhgad Road</string>
+    <string name="confirm_pickup">Confirm Pickup</string>
+    <string name="meet_tactor_here">Meet Tractor Here</string>
+    <string name="booking_your_tractor">Booking Your Tractor</string>
+    <string name="send_request_tractor_failed">Send Request Tractor Failed</string>
+    <string name="no_tractor_accept">No Tractor Available</string>
+    <string name="trip_not_found">Trip not found</string>
+    <string name="tractor">Tractor</string>
+    <string name="tractor_number_example">MH12XY0000</string>
+    <string name="tractor_owner_name_example">Trudy</string>
+    <string name="ascii_dot">■</string>
+    <string name="language_example">English</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_tractor_home">TractorHomeActivity</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_request_tractor">Map</string>
+    <string name="title_activity_renting">RentingActivity</string>
+</resources>

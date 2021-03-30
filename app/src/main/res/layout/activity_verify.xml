@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".authentication.VerifyActivity"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="40dp"
+            android:paddingBottom="15dp"
+            android:text="Verify mobile"
+            android:textColor="#444444"
+
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/otp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter OTP"
+            android:inputType="number"
+            android:paddingLeft="10dp"
+            android:textColor="#1F1F1F" />
+
+
+        <Button
+            android:id="@+id/verifyBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            android:backgroundTint="@color/accent_color"
+            android:text="Verify"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_primary_color" />
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/progressBar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            style="@style/AVLoadingIndicatorView"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+            app:indicatorName="BallClipRotatePulseIndicator"
+            app:indicatorColor="@color/colorAccent" />
+    </LinearLayout>
+
+</LinearLayout>

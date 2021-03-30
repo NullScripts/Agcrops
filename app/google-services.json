@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "1012404690187",
+    "firebase_url": "https://agrocks-ef31a-default-rtdb.firebaseio.com",
+    "project_id": "agrocks-ef31a",
+    "storage_bucket": "agrocks-ef31a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012404690187:android:39917a735650bae8a1160e",
+        "android_client_info": {
+          "package_name": "com.example.agrocks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012404690187-5mbj9oml9o5588q72v8s794rtdbqsd1j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDruw4kBTpItmVMcE_6MT_z-5uGaVanQog"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012404690187-5mbj9oml9o5588q72v8s794rtdbqsd1j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012404690187:android:f25383565ba6a660a1160e",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012404690187-5mbj9oml9o5588q72v8s794rtdbqsd1j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDruw4kBTpItmVMcE_6MT_z-5uGaVanQog"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012404690187-5mbj9oml9o5588q72v8s794rtdbqsd1j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
