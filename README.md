@@ -13,6 +13,8 @@
     <br />
     <a href="https://youtu.be/nbJEsyprcBI">View Demo</a>
     •
+    <a href="https://youtu.be/5y3XP2bumKw">Interactive Demo</a>
+  •
     <a href="https://github.com/NullScript/Agcrops/issues">Report Bug</a>
     •
     <a href="https://github.com/NullScript/Agcrops/issues">Request Feature</a>
@@ -52,6 +54,7 @@ Another feature of this app is,buy and sell of fertilizers. Here a licenced fert
 
 * [Android-Studio](https://developer.android.com/studio/)
 * [Firebase](https://firebase.google.com/)
+* [Firebase Cloud Messanging](https://firebase.google.com/docs/cloud-messaging)
 * [Google Cloud Platform API's](https://console.cloud.google.com/apis/)
 
 <!-- SETUP -->
@@ -67,15 +70,6 @@ Or you can just clone it through [Android Studio](https://developer.android.com/
 ## Usage
 
 Agcrops provides an online platform for farmers to buy and sell their farm yields even in uncertain times like covid19 lockdowns. It also provides facility to contact and hire the tractors as and when required. Daily wage workers can put their status as free or busy and based on that the farmers can hire them when required. The fertilizer shop owners can also buy and sell the fertilizers to the farmers through Agcrops.
-
-<!-- FUTURE SCOPE -->
-## Future Scope
-  <ol>
-    <li>Daily Worker Job Feature</li>
-    <li>Payment Gateway</li>
-    <li>Support System</li>
-    <li>End to End chat system</li>
-  </ol>
 
 <!-- IMPLEMENTED FEATURES -->
 ## Implemented Features
@@ -96,6 +90,15 @@ The next important thing inside the agriculture sector is the Tractor Renting th
 </p>
 
 Inside the image, the one who will rent is online for renting his tractor and the one who wants to rent is going through the confirm cash payment option. Then a FCM request will be send and therefore the renter can decide to rent or not to rent.
+
+<!-- FUTURE SCOPE -->
+## Future Scope
+  <ol>
+    <li>Daily Worker Job Feature</li>
+    <li>Payment Gateway</li>
+    <li>Support System</li>
+    <li>End to End chat system</li>
+  </ol>
 
 <!-- CONTRIBUTING -->
 ## Contributing
